@@ -13,11 +13,7 @@ class HomeHandler(webapp2.RequestHandler):
         template = jinja_current_dir.get_template("/templates/home.html") #fill this in
         self.response.write(template.render())
 
-<<<<<<< HEAD
-class CalendarHandlar(webapp2.RequestHandler):
-=======
 class CalendarHandler(webapp2.RequestHandler):
->>>>>>> 6c66a08ca26391fde368ddc164d9ebd155ca9e80
     def get(self):
         template = jinja_current_dir.get_template("/templates/calendar.html") #fill this in
         self.response.write(template.render())
