@@ -2,12 +2,35 @@ import webapp2
 import os
 import jinja2
 
+
 jinja_current_dir = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
 class HomeHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_current_dir.get_template("") #fill this in
+        self.response.write(template.render())
+
+class CalenderHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_current_dir.get_template("") #fill this in
+        self.response.write(template.render())
+        #DoStuffHere
+
+
+
+
+
+
+
+class BudgetHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_current_dir.get_template("") #fill this in
+        self.response.write(template.render())
+
+class AccountHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_current_dir.get_template("") #fill this in
         self.response.write(template.render())
