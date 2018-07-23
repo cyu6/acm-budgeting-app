@@ -38,17 +38,11 @@ class BudgetHandler(webapp2.RequestHandler):
         template = jinja_current_dir.get_template("/templates/budget.html") #fill this in
         self.response.write(template.render())
 
-class AccountHandler(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_current_dir.get_template("/templates/account.html") #fill this in
-        self.response.write(template.render())
-
 app = webapp2.WSGIApplication([
     ('/', LoginHandler),
     ('/home.html', HomeHandler), #can't be /static.. because it will look in the static folder
     ('/calendar.html', CalendarHandler),
-    ('/budget.html', BudgetHandler),
-    ('/account.html', AccountHandler)
+    ('/budget.html', BudgetHandler)
 
 ], debug=True)
 
