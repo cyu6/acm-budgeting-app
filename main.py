@@ -19,12 +19,6 @@ class CalendarHandler(webapp2.RequestHandler):
         self.response.write(template.render())
         #DoStuffHere
 
-
-
-
-
-
-
 class BudgetHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_current_dir.get_template("/templates/budget.html") #fill this in
