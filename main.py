@@ -12,15 +12,24 @@ jinja_current_dir = jinja2.Environment(
 class LoginHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+        nickname = None
+        login_url = None
+        logout_url = None
+
         if user:
             nickname = user.nickname()
             logout_url = users.create_logout_url('/')
 
         else:
-            login_url = users.create_login_url('/')
-
+            login_url = users.create_login_url('/home.html')
+        template_vars = {
+            "user" : user,
+            "nickname" : nickname,
+            "login_url" : login_url,
+            "logout_url" : logout_url,
+        }
         template = jinja_current_dir.get_template("/templates/login.html") #fill this in
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 class HomeHandler(webapp2.RequestHandler):
     def get(self):
@@ -44,6 +53,7 @@ app = webapp2.WSGIApplication([
     ('/calendar.html', CalendarHandler),
     ('/budget.html', BudgetHandler)
 
+>>>>>>> dafd4c3e41c9fc0171ac1b1c2c4d1a9535df2269
 ], debug=True)
 
 
