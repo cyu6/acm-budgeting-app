@@ -12,15 +12,24 @@ jinja_current_dir = jinja2.Environment(
 class LoginHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+        nickname = None
+        login_url = None
+        logout_url = None
+
         if user:
             nickname = user.nickname()
             logout_url = users.create_logout_url('/')
 
         else:
-            login_url = users.create_login_url('/')
-            
+            login_url = users.create_login_url('/home.html')
+        template_vars = {
+            "user" : user,
+            "nickname" : nickname,
+            "login_url" : login_url,
+            "logout_url" : logout_url,
+        }
         template = jinja_current_dir.get_template("/templates/login.html") #fill this in
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 class HomeHandler(webapp2.RequestHandler):
     def get(self):
@@ -44,18 +53,11 @@ class AccountHandler(webapp2.RequestHandler):
         self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
-<<<<<<< HEAD
     ('/', LoginHandler),
     ('/home.html', HomeHandler), #can't be /static.. because it will look in the static folder
     ('/calendar.html', CalendarHandler),
     ('/budget.html', BudgetHandler),
     ('/account.html', AccountHandler)
-=======
-    ('/home', HomeHandler), #can't be /static.. because it will look in the static folder
-    ('/calendar', CalendarHandler),
-    ('/budget', BudgetHandler),
-    ('/account', AccountHandler)
->>>>>>> 8ec506d0bc2dc2578200bbc093849d6781f34184
 ], debug=True)
 
 
