@@ -13,17 +13,11 @@ class HomeHandler(webapp2.RequestHandler):
         template = jinja_current_dir.get_template("home.html") #fill this in
         self.response.write(template.render())
 
-class CalenderHandler(webapp2.RequestHandler):
+class CalendarHandlar(webapp2.RequestHandler):
     def get(self):
         template = jinja_current_dir.get_template("calendar.html") #fill this in
         self.response.write(template.render())
         #DoStuffHere
-
-
-
-
-
-
 
 class BudgetHandler(webapp2.RequestHandler):
     def get(self):
