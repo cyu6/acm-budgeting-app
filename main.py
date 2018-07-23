@@ -44,11 +44,18 @@ class AccountHandler(webapp2.RequestHandler):
         self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
+<<<<<<< HEAD
     ('/', LoginHandler),
     ('/home.html', HomeHandler), #can't be /static.. because it will look in the static folder
     ('/calendar.html', CalendarHandler),
     ('/budget.html', BudgetHandler),
     ('/account.html', AccountHandler)
+=======
+    ('/home', HomeHandler), #can't be /static.. because it will look in the static folder
+    ('/calendar', CalendarHandler),
+    ('/budget', BudgetHandler),
+    ('/account', AccountHandler)
+>>>>>>> 8ec506d0bc2dc2578200bbc093849d6781f34184
 ], debug=True)
 
 
