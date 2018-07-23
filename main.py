@@ -10,12 +10,12 @@ jinja_current_dir = jinja2.Environment(
 
 class HomeHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_current_dir.get_template("") #fill this in
+        template = jinja_current_dir.get_template("home.html") #fill this in
         self.response.write(template.render())
 
 class CalenderHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_current_dir.get_template("") #fill this in
+        template = jinja_current_dir.get_template("calendar.html") #fill this in
         self.response.write(template.render())
         #DoStuffHere
 
@@ -27,16 +27,17 @@ class CalenderHandler(webapp2.RequestHandler):
 
 class BudgetHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_current_dir.get_template("") #fill this in
+        template = jinja_current_dir.get_template("budget.html") #fill this in
         self.response.write(template.render())
 
 class AccountHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_current_dir.get_template("") #fill this in
+        template = jinja_current_dir.get_template("account.html") #fill this in
         self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', HomeHandler), #can't be /static.. because it will look in the static folder
-#    ('/aboutme', AboutMeHandler),
-#    ('/posts', PostsHandler)
+    ('/calendar', CalendarHandler),
+    ('/budget', BudgetHandler),
+    ('/account', AccountHandler)
 ], debug=True)
