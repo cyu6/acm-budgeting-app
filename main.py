@@ -21,6 +21,7 @@ class LoginHandler(webapp2.RequestHandler):
             logout_url = users.create_logout_url('/')
 
         else:
+<<<<<<< HEAD
             login_url = users.create_login_url('/home.html')
         template_vars = {
             "user" : user,
@@ -28,6 +29,10 @@ class LoginHandler(webapp2.RequestHandler):
             "login_url" : login_url,
             "logout_url" : logout_url,
         }
+=======
+            login_url = users.create_login_url('/')
+
+>>>>>>> dafd4c3e41c9fc0171ac1b1c2c4d1a9535df2269
         template = jinja_current_dir.get_template("/templates/login.html") #fill this in
         self.response.write(template.render(template_vars))
 
@@ -58,6 +63,10 @@ app = webapp2.WSGIApplication([
     ('/calendar.html', CalendarHandler),
     ('/budget.html', BudgetHandler),
     ('/account.html', AccountHandler)
+<<<<<<< HEAD
+=======
+
+>>>>>>> dafd4c3e41c9fc0171ac1b1c2c4d1a9535df2269
 ], debug=True)
 
 
