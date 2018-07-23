@@ -10,23 +10,27 @@ jinja_current_dir = jinja2.Environment(
 
 class HomeHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_current_dir.get_template("home.html") #fill this in
+        template = jinja_current_dir.get_template("/templates/home.html") #fill this in
         self.response.write(template.render())
 
+<<<<<<< HEAD
 class CalendarHandlar(webapp2.RequestHandler):
+=======
+class CalendarHandler(webapp2.RequestHandler):
+>>>>>>> 6c66a08ca26391fde368ddc164d9ebd155ca9e80
     def get(self):
-        template = jinja_current_dir.get_template("calendar.html") #fill this in
+        template = jinja_current_dir.get_template("/templates/calendar.html") #fill this in
         self.response.write(template.render())
         #DoStuffHere
 
 class BudgetHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_current_dir.get_template("budget.html") #fill this in
+        template = jinja_current_dir.get_template("/templates/budget.html") #fill this in
         self.response.write(template.render())
 
 class AccountHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_current_dir.get_template("account.html") #fill this in
+        template = jinja_current_dir.get_template("/templates/account.html") #fill this in
         self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
