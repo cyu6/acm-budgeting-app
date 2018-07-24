@@ -17,6 +17,7 @@ class LoginHandler(webapp2.RequestHandler):
         logout_url = None
 
         if user:
+            
             nickname = user.nickname()
             logout_url = users.create_logout_url('/')
 
