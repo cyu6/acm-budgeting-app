@@ -2,6 +2,7 @@ import webapp2
 import os
 import jinja2
 from google.appengine.api import users
+from models import *
 
 
 jinja_current_dir = jinja2.Environment(
@@ -17,7 +18,7 @@ class LoginHandler(webapp2.RequestHandler):
         logout_url = None
 
         if user:
-            
+
             nickname = user.nickname()
             logout_url = users.create_logout_url('/')
 
@@ -48,18 +49,44 @@ class BudgetHandler(webapp2.RequestHandler):
         template = jinja_current_dir.get_template("/templates/budget.html") #fill this in
         self.response.write(template.render())
     def post(self):
-        bank_account = self.request.get("bank_account")
-        salary = self.request.get("salary")
-        other_income = self.request.get("other_income")
-        tuition = self.request.get("tuition")
-        rent = self.request.get("rent")
-        food = self.request.get("food")
-        bills = self.request.get("bills")
-        school_supplies = self.request.get("school_supplies")
-        transportation = self.request.get("transportation")
-        clothing = self.request.get("clothing")
-        misc = self.request.get("misc")
-        emergency = self.request.get("emergency")
+        bank_account = int(self.request.get("bank_account"))
+        salary = int(self.request.get("salary"))
+        other_income = int(self.request.get("other_income"))
+        tuition = int(self.request.get("tuition"))
+        rent = int(self.request.get("rent"))
+        food = int(self.request.get("food"))
+        bills = int(self.request.get("bills"))
+        school_supplies = int(self.request.get("school_supplies"))
+        transportation = int(self.request.get("transportation"))
+        clothing = int(self.request.get("clothing"))
+        misc = int(self.request.get("misc"))
+        emergency = int(self.request.get("emergency"))
+        # create expenses
+        goal_expenses = Expenses(tuition = tuition, rent = rent, food = food, \
+                                    bills = bills, school_supplies = school_supplies, \
+                                    transportation = transportation, clothing = clothing, \
+                                    misc = misc)
+        goal_expenses.put()
+        # create goals
+        goals = Goals(bank_account = bank_account, salary = salary, \
+                        other_income = other_income, expenses = goal_expenses.key, \
+                        emergency = emergency)
+        goals.put()
+
+        template_vars = {
+            
+        }
+
+        template = jinja_current_dir.get_template("show_budget.html")
+        self.response.write(template.render(template_vars))
+
+class SaveBudgetHandler(webapp2.RequestHandler):
+    def post(self):
+        category = str(self.request.get("payments"))
+        add_amount = int(self.request.get("amount"))
+        # create payments
+        additions = Payments(category = category, amount = add_amount)
+        additions.put()
 
 
 class AccountHandler(webapp2.RequestHandler):
@@ -73,6 +100,7 @@ app = webapp2.WSGIApplication([
     ('/home', HomeHandler), #can't be /static.. because it will look in the static folder
     ('/calendar', CalendarHandler),
     ('/budget', BudgetHandler),
+    ('/savebudget', SaveBudgetHandler),
     ('/account', AccountHandler)
 
 ], debug=True)
