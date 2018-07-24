@@ -24,24 +24,13 @@
   color: maroon;
 }
 
-/* #total{ */
-  /* width: 30%; */
-  /* height:100%; */
-    /* padding: 0px 20px; */
-    /* margin: 0 -20px; */
-    /* display: inline-block; */
-    /* border: 1px solid #ccc; */
-    /* border-radius: 4px; */
-    /* box-sizing: border-box; */
-    /* border-color: black; */
-}
 
 /* new id  */
 #income{
   width: 50%;
-     padding: 12px 20px;
-     margin: 8px 0;
-     display: inline-block;
+     padding: 0px 20px;
+     margin: 4px 0;
+     /* display: inline-block; */
      border: 1px solid #ccc;
      border-radius: 4px;
      box-sizing: border-box;
@@ -51,9 +40,9 @@
 /* new id */
 #save{
   width: 50%;
-     padding: 12px 20px;
-     margin: 8px 0;
-     display: inline-block;
+     padding: 0px 20px;
+     margin:4.5px 0;
+     /* display: inline-block; */
      border: 1px solid #ccc;
      border-radius: 4px;
      box-sizing: border-box;
