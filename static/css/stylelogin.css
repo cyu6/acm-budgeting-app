@@ -2,6 +2,7 @@ body {
 background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url("background4.jpg");
 background-position: center;
 text-align: center;
+
 }
 
 .header{
@@ -16,4 +17,24 @@ padding: 0;
 margin: 0;
 font-size: 100px;
 font-family: helvetica, serif;
+text-align: center;
+}
+
+.greeting{
+  color: white;
+  font-size: 75px;
+  font-family: helvetica, serif;
+  text-align: center;
+  top: 250px;
+  position:relative;
+
+}
+
+.signinbutton{
+font-size: 14px;
+line-height: 1;
+border-radius: 500px;
+padding: 16px 48px 18px;
+top: 320px;
+position:relative;
 }
