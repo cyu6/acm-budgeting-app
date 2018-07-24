@@ -1,4 +1,11 @@
 /* css for budget sheet */
+.parent{
+  border: 1px ;
+  height:200px;
+  display: flex;
+  justify-content: space-around
+}
+
 .header{
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
@@ -17,9 +24,10 @@
 
 #total{
   width: 30%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
+  height:100%;
+    padding: 0px 20px;
+    margin: 0 -20px;
+    /* display: inline-block; */
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -29,9 +37,9 @@
 /* new id  */
 #income{
   width: 30%;
-     padding: 12px 20px;
-     margin: 8px 0;
-     display: inline-block;
+     padding: 4px 20px;
+     /* margin: 8px 0; */
+     /* display: inline-block; */
      border: 1px solid #ccc;
      border-radius: 4px;
      box-sizing: border-box;
@@ -41,9 +49,9 @@
 /* new id */
 #save{
   width: 30%;
-     padding: 12px 20px;
-     margin: 8px 0;
-     display: inline-block;
+     padding: 10px 20px;
+     margin: 0px -20;
+     /* display: inline-block; */
      border: 1px solid #ccc;
      border-radius: 4px;
      box-sizing: border-box;
@@ -75,7 +83,7 @@
 }
 
 .otherHeader{
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.667);
   color: white;
   /* position: fixed; */
   top: 100;
