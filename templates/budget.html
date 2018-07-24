@@ -9,8 +9,6 @@
   <h1>Budget</h1>
   <h2>Fill this form out to create your budget!</h2>
   <p>Note: Put "0" if not applicable</p>
-  <!-- calendar agenda code -->
-  <iframe src="https://calendar.google.com/calendar/embed?mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=cssi.acm.budgeting%40gmail.com&amp;color=%231B887A&amp;ctz=America%2FNew_York" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
   <form method = "post">
 
     <div id="total">
@@ -33,6 +31,14 @@
       </div>
     </div>
 
+    <div id = "save">
+      <h4>Emergency Fund</h4>
+      <p>Amount to set aside: </p>
+      <div>
+        <input type="number" name="emergency" placeholder="0"/>
+      </div>
+    </div>
+
     <div id="expenses">
       <h4>Expenses</h4>
       <p>Tuition payment: </p>
@@ -47,14 +53,6 @@
       <div>
         <input type="number" name="food" placeholder="0"/>
       </div>
-      <p>Monthly bills: </p>
-      <div>
-        <input type="number" name="bills" placeholder="0"/>
-      </div>
-      <p>School supplies, including books: </p>
-      <div>
-        <input type="number" name="school_supplies" placeholder="0"/>
-      </div>
       <p>Transportation: </p>
       <div>
         <input type="number" name="transportation" placeholder="0"/>
@@ -67,11 +65,7 @@
       <div>
         <input type="number" name="misc" placeholder="0"/>
       </div>
-      <h4>Emergency Fund</h4>
-      <p>Amount to set aside: </p>
-      <div>
-        <input type="number" name="emergency" placeholder="0"/>
-      </div>
+
     </div>
 
     <button type="submit">Create my budget!</button>
@@ -87,8 +81,6 @@
       <option value = "tuition">Tuition payment</option>
       <option value = "rent">Rent</option>
       <option value = "food">Food, including groceries</option>
-      <option value = "bills">Monthly bills</option>
-      <option value = "school_supplies">School supplies, including books</option>
       <option value = "transportation">Transportation</option>
       <option value = "clothing">Clothing</option>
       <option value = "misc">Miscellaneous</option>
