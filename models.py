@@ -1,0 +1,33 @@
+from google.appengine.ext import ndb
+
+class Goals(ndb.Model):
+    bank_account = ndb.IntegerProperty();
+    salary = ndb.IntegerProperty();
+    other_income = ndb.IntegerProperty();
+    expenses = ndb.KeyProperty()
+    emergency = ndb.IntegerProperty();
+
+
+class Expenses(ndb.Model):
+    tuition = ndb.IntegerProperty();
+    rent = ndb.IntegerProperty();
+    food = ndb.IntegerProperty();
+    bills = ndb.IntegerProperty();
+    school_supplies = ndb.IntegerProperty();
+    transportation = ndb.IntegerProperty();
+    clothing = ndb.IntegerProperty();
+    misc = ndb.IntegerProperty();
+
+class Payments(ndb.Model):
+    category = ndb.StringProperty();
+    amount = ndb.IntegerProperty();
+
+class ActualExpenses(ndb.Model):
+    a_tuition = ndb.IntegerProperty();
+    a_rent = ndb.IntegerProperty();
+    a_food = ndb.IntegerProperty();
+    a_bills = ndb.IntegerProperty();
+    a_school_supplies = ndb.IntegerProperty();
+    a_transportation = ndb.IntegerProperty();
+    a_clothing = ndb.IntegerProperty();
+    a_misc = ndb.IntegerProperty();

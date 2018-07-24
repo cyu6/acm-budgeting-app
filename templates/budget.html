@@ -9,6 +9,8 @@
   <h1>Budget</h1>
   <h2>Fill this form out to create your budget!</h2>
   <p>Note: Put "0" if not applicable</p>
+  <!-- calendar agenda code -->
+  <iframe src="https://calendar.google.com/calendar/embed?mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=cssi.acm.budgeting%40gmail.com&amp;color=%231B887A&amp;ctz=America%2FNew_York" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
   <form method = "post">
 
     <div id="total">
@@ -78,7 +80,7 @@
 
   <h2>Fill this form out during the week to add to your spreadsheet!</h2>
 
-  <form method = "post">
+  <form method = "post" action = "/savebudget">
 
     <h4>Payments</h4>
     <select name="payments">
