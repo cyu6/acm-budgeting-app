@@ -2,22 +2,56 @@
 <html>
   <head>
     <title>Login</title>
-    <link rel="stylesheet" href="/static/css/stylelogin.css">
+    <link rel="stylesheet" href="/static/css/stylelogin.css" >
+<!-- background image css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body, html {
+        height: 100%;
+        margin: 0;
+    }
 
+
+    body {
+
+        /* The image used */
+        background-image: url("yellowbackground.jpg");
+
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+    #button {
+      text-decoration: none;
+      color:black;
+    }
+
+
+    </style>
   </head>
 
-  <body>
-  
-
+  <body >
+ <center>
+    <img src="logo_transparent.png" alt="logo" width="500" height="500">
+</center>
     <h1></h1>
     {% if user %}
       <h1>Welcome, {{nickname}}!</h1>
-      <br>
-      <a href="{{logout_url}}">Sign Out</a>
-    {% else %}
-      <h1>Welcome!</h1>
-      <a href="{{login_url}}">Sign In</a>
-    {% endif %}
+     <br>
+    <button><a id="button" href="{{logout_url}}">Sign Out</a></button>
+      {% else %}
+     <h1>Welcome!</h1>
+       <a href="{{login_url}}">Sign In</a>
+       {% endif %}
+
+       <!-- class="bg"></div> -->
+
 
   </body>
 </html>
