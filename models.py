@@ -1,7 +1,6 @@
 from google.appengine.ext import ndb
 
 class Goals(ndb.Model):
-    bank_account = ndb.IntegerProperty();
     salary = ndb.IntegerProperty();
     other_income = ndb.IntegerProperty();
     emergency = ndb.IntegerProperty();

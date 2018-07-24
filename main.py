@@ -49,7 +49,6 @@ class BudgetHandler(webapp2.RequestHandler):
         self.response.write(template.render())
     def post(self):
         # income
-        bank_account = int(self.request.get("bank_account"))
         salary = int(self.request.get("salary"))
         other_income = int(self.request.get("other_income"))
         # savings
@@ -72,35 +71,44 @@ class BudgetHandler(webapp2.RequestHandler):
         for expense in goal_expenses:
             expense.put()
             goal_expenses_keys.append(expense.key)
-            print expense.amount
         # create goals
-        goals = Goals(bank_account = bank_account, salary = salary, \
-                       other_income = other_income, emergency = emergency, expenses = [tuition_expense.key])
+        goals = Goals(salary = salary, other_income = other_income, emergency = emergency, expenses = goal_expenses_keys)
         goals.put()
-        # template_vars = {
-        #     "bank_account": bank_account,
-        #     "tuition": tuition_expense.amount,
-        #     "rent" = rent_expense.amount,
-        #     "food" =  food_expense.amount,
-        #     "transportation" =  transportation_expense.amount,
-        #     "clothing" =  clothing_expense.amount,
-        #     "misc" =  misc_expense.amount
-        # }
+        print Goals.query(Goals.salary == 19).get().salary
+        template_vars = {
+            "salary": goals.salary,
+            "other_income": goals.other_income,
+            "emergency": goals.emergency,
+            "tuition": tuition_expense.amount,
+            "rent": rent_expense.amount,
+            "food": food_expense.amount,
+            "transportation": transportation_expense.amount,
+            "clothing": clothing_expense.amount,
+            "misc": misc_expense.amount
+        }
 
         template = jinja_current_dir.get_template("/templates/show_budget.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 class SaveBudgetHandler(webapp2.RequestHandler):
     def post(self):
         category = str(self.request.get("payments"))
         add_amount = int(self.request.get("amount"))
         # create payments
-        additions = Payments(category = category, amount = add_amount)
-        additions.put()
-
-
-
-
+        addition = Expenses(category = category, amount = add_amount, actual = True)
+        addition.put()
+        # template_vars = {
+        #     "new_expense": addition,
+        #     "salary": Goals.query(Goals.salary).get(),
+        #     "other_income": Goals.query(Goals.other_income).get(),
+        #     "emergency": Goals.query(Goals.emergency).get(),
+        #     "tuition": Expenses.query(Expenses.category == "tuition").get().amount,
+        #     "rent": Expenses.query(Expenses.category == "rent").get().amount,
+        #     "food": Expenses.query(Expenses.category == "food").get().amount,
+        #     "transportation": Expenses.query(Expenses.category == "transportation").get().amount,
+        #     "clothing": Expenses.query(Expenses.category == "clothing").get().amount,
+        #     "misc": Expenses.query(Expenses.category == "misc").get().amount
+        # }
         template = jinja_current_dir.get_template("/templates/show_budget.html")
         self.response.write(template.render(template_vars))
 

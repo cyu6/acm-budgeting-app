@@ -2,12 +2,12 @@
 
 <head>
   <title>Pretty Budget</title>
+  <link rel = "stylesheet" href = "/static/css/styleShowBudgetPage.css"/>
 </head>
 
 <body>
-  <h1>Budget for the month</h1>
-  <h3>Here is your budget for this month!<h3>
-
+  <h1>Budget for the week</h1>
+  <h3>Here is your budget for this week!<h3>
   <table>
     <tr>
       <th>Category</th>
@@ -16,11 +16,79 @@
       <th>Difference</th>
     </tr>
     <tr>
+      <th colspan = "4">Income</th>
     </tr>
-
-
-
+    <tr>
+      <td>Salary</td>
+      <td>{{salary}}</td>
+      <td>{{new_expense}}</td>
+      <td>{{salary-400}}</td>
+    </tr>
+    <tr>
+      <td>Other income</td>
+      <td>{{other_income}}</td>
+      <td>placeholder</td>
+      <td>{{other_income - salary}}</td>
+    </tr>
+    <tr>
+      <td>Subtotal</td>
+      <td colspan = "3">{{salary + other_income}}</td>
+    </tr>
+    <tr>
+      <th colspan = "4">Savings</th>
+    </tr>
+    <tr>
+      <td>Emergency fund</td>
+      <td>{{emergency}}</td>
+      <td>placeholder</td>
+      <td>{{emergency}}</td>
+    </tr>
+    <tr>
+      <th colspan = "4">Expenses</th>
+    </tr>
+    <tr>
+      <td>Tuition</td>
+      <td>{{tuition}}</td>
+      <td>placeholder</td>
+      <td>{{tuition}}</td>
+    </tr>
+    <tr>
+      <td>Rent</td>
+      <td>{{rent}}</td>
+      <td>placeholder</td>
+      <td>{{rent}}</td>
+    </tr>
+    <tr>
+      <td>Food</td>
+      <td>{{food}}</td>
+      <td>placeholder</td>
+      <td>{{food}}</td>
+    </tr>
+    <tr>
+      <td>Transportation</td>
+      <td>{{transportation}}</td>
+      <td>placeholder</td>
+      <td>{{transportation}}</td>
+    </tr>
+    <tr>
+      <td>Clothing</td>
+      <td>{{clothing}}</td>
+      <td>placeholder</td>
+      <td>{{clothing}}</td>
+    </tr>
+    <tr>
+      <td>Miscellaneous</td>
+      <td>{{misc}}</td>
+      <td>placeholder</td>
+      <td>{{misc}}</td>
+    </tr>
+    <tr>
+      <td>Subtotal</td>
+      <td colspan = "3">{{tuition + rent + food+ transportation + clothing + misc}}</td>
+    </tr>
   </table>
+  <p>Total left: {{salary + other_income - (emergency + tuition + rent + food+ transportation + clothing + misc)}}</p>
+
 </body>
 
 </html>
