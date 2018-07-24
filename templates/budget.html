@@ -6,10 +6,16 @@
 </head>
 
 <body>
-  <h1>Budget</h1>
+  <h1 class="header">Budget</h1>
+<br> <br>
+ <center>
   <h2>Fill this form out to create your budget!</h2>
-  <p>Note: Put "0" if not applicable</p>
+
+  <p id="warning">Note: Put "0" if not applicable</p>
+  </center>
   <form method = "post">
+  <div class= "parent">
+
     <div id="income">
       <h4>Income</h4>
       <p>Salary: </p>
@@ -29,7 +35,7 @@
         <input type="number" name="emergency" placeholder="0"/>
       </div>
     </div>
-
+  </div>
     <div id="expenses">
       <h4>Expenses</h4>
       <p>Tuition payment: </p>
@@ -55,15 +61,20 @@
       <p>Miscellaneous: </p>
       <div>
         <input type="number" name="misc" placeholder="0"/>
+        <br>
+        <br>
+
       </div>
 
     </div>
-
     <button type="submit">Create my budget!</button>
+
+
+    <!-- <button type="submit">Create my budget!</button> -->
 
   </form>
 
-  <h2>Fill this form out during the week to add to your spreadsheet!</h2>
+  <h2 class="otherHeader">Fill this form out during the week to add to your spreadsheet!</h2>
 
   <form id="fillForm"method = "post" action = "/savebudget">
 
