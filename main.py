@@ -42,7 +42,6 @@ class CalendarHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_current_dir.get_template("/templates/calendar.html") #fill this in
         self.response.write(template.render())
-        #DoStuffHere
 
 class BudgetHandler(webapp2.RequestHandler):
     def get(self):
@@ -69,18 +68,27 @@ class BudgetHandler(webapp2.RequestHandler):
         misc = int(self.request.get("misc"))
         misc_expense = Expenses(category = "misc", amount = misc, actual = False)
         goal_expenses = [tuition_expense, rent_expense, food_expense, transportation_expense, clothing_expense, misc_expense]
+        goal_expenses_keys = []
+        for expense in goal_expenses:
+            expense.put()
+            goal_expenses_keys.append(expense.key)
+            print expense.amount
         # create goals
         goals = Goals(bank_account = bank_account, salary = salary, \
-                        other_income = other_income, expenses = goal_expenses, \
-                        emergency = emergency)
+                       other_income = other_income, emergency = emergency, expenses = [tuition_expense.key])
         goals.put()
+        # template_vars = {
+        #     "bank_account": bank_account,
+        #     "tuition": tuition_expense.amount,
+        #     "rent" = rent_expense.amount,
+        #     "food" =  food_expense.amount,
+        #     "transportation" =  transportation_expense.amount,
+        #     "clothing" =  clothing_expense.amount,
+        #     "misc" =  misc_expense.amount
+        # }
 
-        template_vars = {
-
-        }
-
-        template = jinja_current_dir.get_template("show_budget.html")
-        self.response.write(template.render(template_vars))
+        template = jinja_current_dir.get_template("/templates/show_budget.html")
+        self.response.write(template.render())
 
 class SaveBudgetHandler(webapp2.RequestHandler):
     def post(self):
@@ -93,7 +101,7 @@ class SaveBudgetHandler(webapp2.RequestHandler):
 
 
 
-        template = jinja_current_dir.get_template("show_budget.html")
+        template = jinja_current_dir.get_template("/templates/show_budget.html")
         self.response.write(template.render(template_vars))
 
 

@@ -4,8 +4,8 @@ class Goals(ndb.Model):
     bank_account = ndb.IntegerProperty();
     salary = ndb.IntegerProperty();
     other_income = ndb.IntegerProperty();
-    expenses = ndb.KeyProperty(repeated = true)
     emergency = ndb.IntegerProperty();
+    expenses = ndb.KeyProperty(repeated = True)
 
 # class Expenses(ndb.Model):
 #     tuition = ndb.IntegerProperty();
