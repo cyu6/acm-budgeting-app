@@ -13,11 +13,11 @@
       <meta http-equiv="refresh" content="0; URL=http://localhost:8080/home">
       <meta name="keywords" content="automatic redirection">
       <br>
-    <button id="button"><a  href="{{logout_url}}">Sign Out</a></button>
+    <button><a id="button" href="{{logout_url}}">Sign Out</a></button>
       {% else %}
      <h1 class="header">BudgeEasy</h1>
-     <h1 id="welcome">Welcome!</h1>
-       <button id= "button"><a  href="{{login_url}}">Sign In</a></button>
+     <h1>Welcome!</h1>
+       <button><a href="{{login_url}}">Sign In</a></button>
        {% endif %}
 
        <!-- class="bg"></div> -->
