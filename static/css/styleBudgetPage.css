@@ -1,30 +1,100 @@
 /* css for budget sheet */
-#total{
+.parent{
+  border: 1px ;
+  height:200px;
+  display: flex;
+  justify-content: space-around
+}
+
+.header{
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  font-size: 25px;
+  font-family: helvetica, serif;
+  text-align: center;
+}
+#warning{
+  color: maroon;
+}
+
+#total{
+  width: 30%;
+  height:100%;
+    padding: 0px 20px;
+    margin: 0 -20px;
+    /* display: inline-block; */
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    border-color: black;
 }
 
 /* new id  */
 #income{
-
+  width: 30%;
+     padding: 1px 20px;
+     /* margin: 8px 0; */
+     /* display: inline-block; */
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+     border-color: black;
 }
 
 /* new id */
 #save{
-
+  width: 30%;
+     padding: 0px 20px;
+     margin: 0px -20;
+     /* display: inline-block; */
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+     border-color: black;
 }
 
 /* new id*/
 #expenses{
-
+  width: 100%;
+     padding: 12px 20px;
+     margin: 8px 0;
+     display: inline-block;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+     border-color: black;
 }
 
 /* new id */
 #fillForm{
+  width: 100%;
+     padding: 12px 20px;
+     margin: 8px 0;
+     display: inline-block;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+     border-color: black;
+}
 
+.otherHeader{
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  /* position: fixed; */
+  top: 100;
+  left: 100;
+  width: 100%;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  font-family: helvetica, serif;
+  text-align: center;
 }
