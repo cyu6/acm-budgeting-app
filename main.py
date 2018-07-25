@@ -20,10 +20,10 @@ class LoginHandler(webapp2.RequestHandler):
         if user:
 
             nickname = user.nickname()
-            logout_url = users.create_logout_url('/Login')
+            logout_url = users.create_logout_url('/')
 
         else:
-            login_url = users.create_login_url('/')
+            login_url = users.create_login_url('/home')
         template_vars = {
             "user" : user,
             "nickname" : nickname,
@@ -183,8 +183,8 @@ class AccountHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/', HomeHandler),
-    ('/Login', LoginHandler), #can't be /static.. because it will look in the static folder
+    ('/', LoginHandler),
+    ('/home', HomeHandler), #can't be /static.. because it will look in the static folder
     ('/calendar', CalendarHandler),
     ('/billsplitter', SplitBillHandler ),
     ('/budget', BudgetHandler),
