@@ -9,10 +9,12 @@
 
     <!-- <h1></h1> -->
     {% if user %}
-      <h1>Welcome, {{nickname}}!</h1>
+      <h1>Are You Sure You Want to Logout!</h1>
+  <!-- <h1>
       <meta http-equiv="refresh" content="0; URL=http://localhost:8080/home">
       <meta name="keywords" content="automatic redirection">
       <br>
+      </h1> -->
     <button><a id="button" href="{{logout_url}}">Sign Out</a></button>
       {% else %}
         <h1 class="header">BudgeEasy</h1>

@@ -145,7 +145,7 @@ app = webapp2.WSGIApplication([
     ('/', LoginHandler),
     ('/home', HomeHandler), #can't be /static.. because it will look in the static folder
     ('/calendar', CalendarHandler),
-    ('/billspliter', SplitBillHandler ),
+    ('/billsplitter', SplitBillHandler ),
     ('/budget', BudgetHandler),
     ('/savebudget', SaveBudgetHandler),
     ('/account', AccountHandler)
