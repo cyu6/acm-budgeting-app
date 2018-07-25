@@ -63,6 +63,11 @@ class SplitBillHandler(webapp2.RequestHandler):
             "nameofevent" : nameofevent,
         }
         template = jinja_current_dir.get_template("/templates/show_splitbill.html") #fill this in
+        splitter_query= Splitter.query()
+        splitter = splitter_query.fetch()
+
+        print(splitter)
+        self.response.write(splitter)
         self.response.write(template.render(template_vars))
 
 class BudgetHandler(webapp2.RequestHandler):
@@ -100,9 +105,6 @@ class BudgetHandler(webapp2.RequestHandler):
         goals.put()
 
         starting_value = 0
-        income_subtotal = salary+other_income
-        expenses_subtotal = tuition + rent + food + transportation + clothing + misc
-        remaining = income_subtotal - (emergency + expenses_subtotal)
 
         template_vars = {
             "week": goals.week,
@@ -122,9 +124,6 @@ class BudgetHandler(webapp2.RequestHandler):
             "a_transportation": starting_value,
             "a_clothing": starting_value,
             "a_misc": starting_value,
-            "income_subtotal": income_subtotal,
-            "expenses_subtotal": expenses_subtotal,
-            "remaining": remaining
         }
         template = jinja_current_dir.get_template("/templates/show_budget.html")
         self.response.write(template.render(template_vars))
@@ -138,37 +137,46 @@ class SaveBudgetHandler(webapp2.RequestHandler):
         # create new expense
         new_expense = Expenses(week = week, category = category, amount = add_amount, actual = True)
         new_expense.put()
+        # dictionary for all total amounts
+        total_amounts = {
+            "tuition": 0,
+            "rent": 0,
+            "food": 0,
+            "transportation": 0,
+            "clothing": 0,
+            "misc": 0
+        }
         # fetch all entries with same category and week
         same_category_expenses = Expenses.query(Expenses.week == week).filter(Expenses.category == category).filter(Expenses.actual == True).fetch()
-        # find total actual expense so far this week
+        # find total actual expense for that category so far this week
         total_amount = 0
         for expense in same_category_expenses:
             total_amount += expense.amount
-        # run through list of categories
-        # expense_categories = ["tuition", "rent", "food", "transportation", "clothing", "misc"]
-        # for expense_category in expense_categories:
-        #     if expense_category == category:
-        #         ("a_%s" % category)
+        # add total amount to dictionary by running through list of categories
+        expense_categories = ["tuition", "rent", "food", "transportation", "clothing", "misc"]
+        for expense_category in expense_categories:
+            if expense_category == category:
+                total_amounts[category] = total_amount
 
-        # template_vars = {
-        #     "week": week,
-        #     "starting_actual": starting_value,
-        #     "salary": Goals.query(Goals.week == week).get().salary,
-        #     "other_income": Goals.query(Goals.week == week).get().other_income,
-        #     "emergency": Goals.query(Goals.week == week).get().emergency,
-        #     "tuition": Expenses.query(Expenses.week == week).filter(Expenses.category=="tuition").get().amount,
-        #     "rent": Expenses.query(Expenses.week == week).filter(Expenses.category=="rent").get().amount,
-        #     "food": Expenses.query(Expenses.week == week).filter(Expenses.category=="food").get().amount,
-        #     "transportation": Expenses.query(Expenses.week == week).filter(Expenses.category=="transportation").get().amount,
-        #     "clothing": Expenses.query(Expenses.week == week).filter(Expenses.category=="clothing").get().amount,
-        #     "misc": Expenses.query(Expenses.week == week).filter(Expenses.category=="misc").get().amount
-        #     "a_tuition":
-        #     "a_rent"
-        #     "a_food":
-        #     "a_transportation"
-        #     "a_clothing"
-        #     "a_misc"
-        # }
+        template_vars = {
+            "week": week,
+            "starting_actual": starting_value,
+            "salary": Goals.query(Goals.week == week).get().salary,
+            "other_income": Goals.query(Goals.week == week).get().other_income,
+            "emergency": Goals.query(Goals.week == week).get().emergency,
+            "tuition": Expenses.query(Expenses.week == week).filter(Expenses.category=="tuition").get().amount,
+            "rent": Expenses.query(Expenses.week == week).filter(Expenses.category=="rent").get().amount,
+            "food": Expenses.query(Expenses.week == week).filter(Expenses.category=="food").get().amount,
+            "transportation": Expenses.query(Expenses.week == week).filter(Expenses.category=="transportation").get().amount,
+            "clothing": Expenses.query(Expenses.week == week).filter(Expenses.category=="clothing").get().amount,
+            "misc": Expenses.query(Expenses.week == week).filter(Expenses.category=="misc").get().amount,
+            "a_tuition": total_amounts["tuition"],
+            "a_rent": total_amounts["rent"],
+            "a_food": total_amounts["food"],
+            "a_transportation": total_amounts["transportation"],
+            "a_clothing": total_amounts["clothing"],
+            "a_misc": total_amounts["misc"]
+        }
         template = jinja_current_dir.get_template("/templates/show_budget.html")
         self.response.write(template.render(template_vars))
 
