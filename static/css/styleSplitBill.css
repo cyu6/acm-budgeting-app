@@ -17,6 +17,16 @@
     text-align: center;
 }
 
+.thisheader{
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  color: white;
+  height: 40px;
+  font-size: 25px;
+  top: 430px;
+  text-align: center;
+
+}
 img{
 display: block;
 margin-left: auto;

@@ -33,3 +33,9 @@ class Expenses(ndb.Model):
 #     a_transportation = ndb.IntegerProperty();
 #     a_clothing = ndb.IntegerProperty();
 #     a_misc = ndb.IntegerProperty();
+
+class Splitter(ndb.Model):
+    nameofevent = ndb.StringProperty();
+    date = ndb.StringProperty();
+    totalbill = ndb.IntegerProperty();
+    totalpeople = ndb.IntegerProperty();
