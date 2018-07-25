@@ -68,7 +68,7 @@
   </div>
   <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
+      <li class="active"><a href="home">Home</a></li>
       <li><a href="calendar">Calendar</a></li>
       <li><a href="budget">Budget</a></li>
      <li><a href="billsplitter">Splitter</a></li>
@@ -109,7 +109,7 @@
     </tr>
     <tr>
       <td>Subtotal</td>
-      <td colspan = "3">{{income_subtotal}}</td>
+      <td colspan = "3">{{salary+other_income}}</td>
     </tr>
     <tr>
       <th colspan = "4">Savings</th>
@@ -161,12 +161,12 @@
     </tr>
     <tr>
       <td>Subtotal</td>
-      <td colspan = "3">{{expenses_subtotal}}</td>
+      <td colspan = "3">{{tuition + rent + food + transportation + clothing + misc}}</td>
     </tr>
   </table>
-  <p style="color:red;">Total left: {{remaining}}</p>
+  <p style="color:red;">Total left: {{salary+other_income - (emergency + tuition + rent + food + transportation + clothing + misc)}}</p>
   <p>
-    {% if remaining < 0 %}
+    {% if (salary+other_income - (emergency + tuition + rent + food + transportation + clothing + misc)) < 0 %}
       You should resubmit your numbers, you're spending more than you're earning!
     {% endif %}
   </p>
