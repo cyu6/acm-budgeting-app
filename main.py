@@ -65,6 +65,8 @@ class BudgetHandler(webapp2.RequestHandler):
         template = jinja_current_dir.get_template("/templates/budget.html") #fill this in
         self.response.write(template.render())
     def post(self):
+        # week of
+        week = int(self.request.get("week"))
         # income
         salary = int(self.request.get("salary"))
         other_income = int(self.request.get("other_income"))
@@ -89,10 +91,11 @@ class BudgetHandler(webapp2.RequestHandler):
             expense.put()
             goal_expenses_keys.append(expense.key)
         # create goals
-        goals = Goals(salary = salary, other_income = other_income, emergency = emergency, expenses = goal_expenses_keys)
+        goals = Goals(week = week, salary = salary, other_income = other_income, emergency = emergency, expenses = goal_expenses_keys)
         goals.put()
-        print Goals.query(Goals.salary == 19).get().salary
+        # print Goals.query(Goals.week == 1).get().salary
         template_vars = {
+            "week": goals.week,
             "salary": goals.salary,
             "other_income": goals.other_income,
             "emergency": goals.emergency,
