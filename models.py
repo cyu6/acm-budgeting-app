@@ -19,6 +19,17 @@ class Goals(ndb.Model):
 #     misc = ndb.IntegerProperty();
 
 class Expenses(ndb.Model):
+    week = ndb.IntegerProperty();
     category = ndb.StringProperty();
     amount = ndb.IntegerProperty();
     actual = ndb.BooleanProperty();
+
+# class ActualExpenses(ndb.Model):
+#     a_tuition = ndb.IntegerProperty();
+#     a_rent = ndb.IntegerProperty();
+#     a_food = ndb.IntegerProperty();
+#     a_bills = ndb.IntegerProperty();
+#     a_school_supplies = ndb.IntegerProperty();
+#     a_transportation = ndb.IntegerProperty();
+#     a_clothing = ndb.IntegerProperty();
+#     a_misc = ndb.IntegerProperty();

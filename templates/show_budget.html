@@ -71,12 +71,11 @@
       <li class="active"><a href="/">Home</a></li>
       <li><a href="calendar">Calendar</a></li>
       <li><a href="budget">Budget</a></li>
-      <li><a href="splitbill">Splitter</a></li>
-
+     <li><a href="billsplitter">Splitter</a></li>
 
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> SignOut</a></li>
+      <li><a href=""><span class="glyphicon glyphicon-log-in"></span> SignOut</a></li>
     </ul>
   </div>
 </div>
@@ -84,7 +83,7 @@
 <!-- end of nav bar  -->
 <body>
 
-  <h3>Here is your budget for this week!<h3>
+  <h3>Here is your budget for this week! Week {{week}}<h3>
   <table>
 <th id="heading" colspan="4">Budget for the week</th>
    <tr align="center">
@@ -99,18 +98,18 @@
     <tr>
       <td>Salary</td>
       <td>{{salary}}</td>
-      <td>{{new_expense}}</td>
-      <td>{{salary-400}}</td>
+      <td>{{starting_actual}}</td>
+      <td>{{salary-starting_actual}}</td>
     </tr>
     <tr>
       <td>Other income</td>
       <td>{{other_income}}</td>
-      <td>placeholder</td>
-      <td>{{other_income - salary}}</td>
+      <td>{{starting_actual}}</td>
+      <td>{{other_income-starting_actual}}</td>
     </tr>
     <tr>
       <td>Subtotal</td>
-      <td colspan = "3">{{salary + other_income}}</td>
+      <td colspan = "3">{{income_subtotal}}</td>
     </tr>
     <tr>
       <th colspan = "4">Savings</th>
@@ -118,8 +117,8 @@
     <tr>
       <td>Emergency fund</td>
       <td>{{emergency}}</td>
-      <td>placeholder</td>
-      <td>{{emergency}}</td>
+      <td>{{starting_actual}}</td>
+      <td>{{emergency-starting_actual}}</td>
     </tr>
     <tr>
       <th colspan = "4">Expenses</th>
@@ -127,46 +126,50 @@
     <tr>
       <td>Tuition</td>
       <td>{{tuition}}</td>
-      <td>placeholder</td>
-      <td>{{tuition}}</td>
+      <td>{{a_tuition}}</td>
+      <td>{{tuition-a_tuition}}</td>
     </tr>
     <tr>
       <td>Rent</td>
       <td>{{rent}}</td>
-      <td>placeholder</td>
-      <td>{{rent}}</td>
+      <td>{{a_rent}}</td>
+      <td>{{rent-a_rent}}</td>
     </tr>
     <tr>
       <td>Food</td>
       <td>{{food}}</td>
-      <td>placeholder</td>
-      <td>{{food}}</td>
+      <td>{{a_food}}</td>
+      <td>{{food-a_food}}</td>
     </tr>
     <tr>
       <td>Transportation</td>
       <td>{{transportation}}</td>
-      <td>placeholder</td>
-      <td>{{transportation}}</td>
+      <td>{{a_transportation}}</td>
+      <td>{{transportation-a_transportation}}</td>
     </tr>
     <tr>
       <td>Clothing</td>
       <td>{{clothing}}</td>
-      <td>placeholder</td>
-      <td>{{clothing}}</td>
+      <td>{{a_clothing}}</td>
+      <td>{{clothing-a_clothing}}</td>
     </tr>
     <tr>
       <td>Miscellaneous</td>
       <td>{{misc}}</td>
-      <td>placeholder</td>
-      <td>{{misc}}</td>
+      <td>{{a_misc}}</td>
+      <td>{{misc-a_misc}}</td>
     </tr>
     <tr>
       <td>Subtotal</td>
-      <td colspan = "3">{{tuition + rent + food+ transportation + clothing + misc}}</td>
+      <td colspan = "3">{{expenses_subtotal}}</td>
     </tr>
   </table>
-
-  <p style="color:red;">Total left: {{salary + other_income - (emergency + tuition + rent + food+ transportation + clothing + misc)}}</p>
+  <p style="color:red;">Total left: {{remaining}}</p>
+  <p>
+    {% if remaining < 0 %}
+      You should resubmit your numbers, you're spending more than you're earning!
+    {% endif %}
+  </p>
 
 </body>
 
