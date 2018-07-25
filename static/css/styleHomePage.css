@@ -1,50 +1,52 @@
 /* body{
    font-size:16px;
    font-family: "Arial", serif;
-}
+} */
 
-#box{
+/* #box{
   width:600px;
   margin:18% auto;
   border:#ccc 1px solid;
 
-}
-.title{
-  padding: 5px;
+} */
+/* .title{
+  padding: 0px;
+  width:25%;
   background:steelblue;
   color:white;
   text-align: center;
   text-transform: uppercase;
-}
-small{
+} */
+/* small{
   font-size: 14px;
   cursor: pointer;
 }
 input{
-  width:100%;
-  box-sizing:border-box;
-  padding: 15px;
+  width: 25%;
+  /* box-sizing:border-box; */
+  /* padding: 0px;
   color: steelblue;
   font-size: 22px;
   text-align: center;
   display:none;
-}
-ul{
-  padding:15px;
-}
-
-ul li{
+} */
+/* ul{
+  padding:0px;
+} */
+/* changes size if list */
+/* ul li{
   list-style: none;
-  padding:10px;
-}
-
-ul li:nth-child(2n){
+  padding:0px;
+  width:25%;
+} */
+/* black on the side of the box */
+/* ul li:nth-child(2n){
   background: #f4f4f4;
   border-left: 4px solid #000;
-}
-
-span{
+} */
+/* red x */
+/* span{
   color:tomato;
-  font-size: 22px;
+  font-size: 10px;
   cursor: pointer;
 } */
