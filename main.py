@@ -63,6 +63,11 @@ class SplitBillHandler(webapp2.RequestHandler):
             "nameofevent" : nameofevent,
         }
         template = jinja_current_dir.get_template("/templates/show_splitbill.html") #fill this in
+        splitter_query= Splitter.query()
+        splitter = splitter_query.fetch()
+
+        print(splitter)
+        self.response.write(splitter)
         self.response.write(template.render(template_vars))
 
 class BudgetHandler(webapp2.RequestHandler):
