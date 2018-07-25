@@ -1,6 +1,7 @@
 /* color of the  */
 table, th, td {
-    border: 1px solid darkcyan;
+    border: 2px solid darkcyan;
+    border-color:linear-gradient(266deg, #229fd4, #22d44d, #053711, #9816b8);
     border-collapse: collapse;
     text-align: center;
 }
@@ -16,4 +17,8 @@ th, td {
 th[colspan]{
   text-align: center;
 
+}
+
+body{
+text-align: center;
 }
