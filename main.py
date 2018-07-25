@@ -76,7 +76,7 @@ class BudgetHandler(webapp2.RequestHandler):
         # create goals
         goals = Goals(week = week, salary = salary, other_income = other_income, emergency = emergency, expenses = goal_expenses_keys)
         goals.put()
-        print Goals.query(Goals.week == 1).get().salary
+        # print Goals.query(Goals.week == 1).get().salary
         template_vars = {
             "week": goals.week,
             "salary": goals.salary,

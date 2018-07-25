@@ -1,8 +1,19 @@
+/* color of the  */
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid darkcyan;
     border-collapse: collapse;
+    text-align: center;
 }
-
+/* color of the word in the boxes */
 th, td {
     padding: 15px;
+    width:20%;
+    height:40px;
+    text-align: center;
+
+
+}
+th[colspan]{
+  text-align: center;
+
 }
