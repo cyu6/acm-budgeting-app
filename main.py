@@ -55,12 +55,14 @@ class SplitBillHandler(webapp2.RequestHandler):
         eachpersonpays = totalbill/totalpeople
         new_splitter = Splitter(totalbill=totalbill,totalpeople=totalpeople, nameofevent=nameofevent, date=date)
         new_splitter.put()
+        all_splitters = Splitter.query().fetch()
         template_vars = {
-            "totalbill" : totalbill,
-            "totalpeople" : totalpeople,
+            "totalbill" : new_splitter.totalbill,
+            "totalpeople" : new_splitter.totalpeople,
             "eachperson" : eachpersonpays,
-            "date" : date,
-            "nameofevent" : nameofevent,
+            "date" : new_splitter.date,
+            "nameofevent" : new_splitter.nameofevent,
+            "splitters" : all_splitters
         }
         template = jinja_current_dir.get_template("/templates/show_splitbill.html") #fill this in
         self.response.write(template.render(template_vars))
