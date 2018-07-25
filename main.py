@@ -43,6 +43,23 @@ class CalendarHandler(webapp2.RequestHandler):
         template = jinja_current_dir.get_template("/templates/calendar.html") #fill this in
         self.response.write(template.render())
 
+class SplitBillHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_current_dir.get_template("/templates/splitbill.html") #fill this in
+        self.response.write(template.render())
+    def post(self):
+        totalbill = int(self.request.get("totalbill"))
+        totalpeople = int(self.request.get("totalpeople"))
+        eachpersonpays = totalbill/totalpeople
+        print(eachpersonpays)
+        template_vars = {
+            "totalbill" : totalbill,
+            "totalpeople" : totalpeople,
+            "eachperson" : eachpersonpays
+        }
+        template = jinja_current_dir.get_template("/templates/show_splitbill.html") #fill this in
+        self.response.write(template.render(template_vars))
+
 class BudgetHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_current_dir.get_template("/templates/budget.html") #fill this in
@@ -128,6 +145,7 @@ app = webapp2.WSGIApplication([
     ('/', LoginHandler),
     ('/home', HomeHandler), #can't be /static.. because it will look in the static folder
     ('/calendar', CalendarHandler),
+    ('/billspliter', SplitBillHandler ),
     ('/budget', BudgetHandler),
     ('/savebudget', SaveBudgetHandler),
     ('/account', AccountHandler)
