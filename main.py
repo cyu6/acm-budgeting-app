@@ -48,23 +48,14 @@ class SplitBillHandler(webapp2.RequestHandler):
         template = jinja_current_dir.get_template("/templates/splitbill.html") #fill this in
         self.response.write(template.render())
     def post(self):
-<<<<<<< HEAD
         user = users.get_current_user().email()
         totalbill = float(self.request.get("totalbill"))
-=======
-        
-        totalbill = int(self.request.get("totalbill"))
->>>>>>> 90ca5d6ddc052103c0c9843655781fbe864d8bfb
         totalpeople = int(self.request.get("totalpeople"))
         nameofevent = self.request.get("nameofevent")
         date = self.request.get("date")
         eachpersonpays = totalbill/totalpeople
-<<<<<<< HEAD
         eachportion = round(eachpersonpays, 2)
         new_splitter = Splitter(totalbill=totalbill,totalpeople=totalpeople, nameofevent=nameofevent, date=date, split = eachportion, user = user)
-=======
-        new_splitter = Splitter(totalbill=totalbill,totalpeople=totalpeople, nameofevent=nameofevent, date=date)
->>>>>>> 90ca5d6ddc052103c0c9843655781fbe864d8bfb
         new_splitter.put()
         all_splitters = Splitter.query(Splitter.user == user).fetch()
         template_vars = {
