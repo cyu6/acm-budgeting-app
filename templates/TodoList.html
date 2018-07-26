@@ -4,9 +4,9 @@
 
   <meta charset="utf-8">
 
-  <link rel="stylesheet" href="./todomvc-app.css" />
+  <!-- <link rel="stylesheet" href="./todomvc-app.css" />
   <link rel="stylesheet" href="./todo.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 
   <title>BudgeEasy</title>
   <link rel="icon" type="image/png" href="/static/css/favicon.png">
@@ -94,7 +94,7 @@
 <!-- end of nav bar -->
 <!-- start of todo todolist -->
      <center>
-
+<!--
         <div id="/completed" class="completed-filter">
             <div id="/active" class="active-filter">
                 <section class="todoapp">
@@ -233,5 +233,31 @@
           <input required type="text" value="" class="todo-input" placeholder="What needs to be done?"/>
           <label for="created-checkbox-10" class="created-checkbox-label">Add</label>
           <label for="deleted-checkbox-10" class="deleted-checkbox-label">×</label>
-          <div class="items-left-counter-helper"></div>
+          <div class="items-left-counter-helper"></div> -->
+
+
+  <h1>My ToDo List</h1>
+  <ul>
+    {% for item in list_items %}
+      <li>
+        <span>{{item.content}}</span>
+        <span class="spacer"></span>
+        <span class="delete">
+          <img src="static/images/noun_Delete_1272081.svg">
+        </span>
+      </li>
+    {% endfor %}
+    <li id="last">
+      <form method="post">
+        <input id="newListItem"type="text" name="list_item"
+               placeholder="Enter a new TODO...">
+        <span class="spacer"></span>
+        <button id="addbutton">Add</button>
+      </form>
+    </li>
+  </ul>
+  <script src="static/scripts/todo_list.js"></script>
+</body>
+</html>
+
     </center>
