@@ -192,10 +192,9 @@ class SaveBudgetHandler(webapp2.RequestHandler):
         template = jinja_current_dir.get_template("/templates/show_budget.html")
         self.response.write(template.render(template_vars))
 
-
-class AccountHandler(webapp2.RequestHandler):
+class TodoListHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_current_dir.get_template("/templates/account.html") #fill this in
+        template = jinja_current_dir.get_template("/templates/TodoList.html") #fill this in
         self.response.write(template.render())
 
 
@@ -206,7 +205,7 @@ app = webapp2.WSGIApplication([
     ('/billsplitter', SplitBillHandler ),
     ('/budget', BudgetHandler),
     ('/savebudget', SaveBudgetHandler),
-    ('/account', AccountHandler)
+    ('/todolist', TodoListHandler)
 
 ], debug=True)
 
