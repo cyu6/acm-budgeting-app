@@ -146,10 +146,11 @@ class SaveBudgetHandler(webapp2.RequestHandler):
         # fetch all entries with same category and week
         same_category_expenses = Expenses.query(Expenses.week == week).filter(Expenses.category == category).filter(Expenses.actual == True).fetch()
         # find total actual expense for that category so far this week
-        total_amount = 0
+        total_amount = add_amount
         sum = 0
         for expense in same_category_expenses:
             total_amount += expense.amount
+        print total_amount
         # add total amount to dictionary by running through list of categories
         expense_categories = ["tuition", "rent", "food", "transportation", "clothing", "misc"]
         for expense_category in expense_categories:
@@ -166,10 +167,8 @@ class SaveBudgetHandler(webapp2.RequestHandler):
                 for key in total_amounts:
                     if expense_category == key:
                         total_amounts[key] = sum
+                sum = 0
         print total_amounts
-
-        # recall total amounts to dictionary
-
 
         template_vars = {
             "week": week,
@@ -177,12 +176,12 @@ class SaveBudgetHandler(webapp2.RequestHandler):
             "salary": Goals.query(Goals.week == week).get().salary,
             "other_income": Goals.query(Goals.week == week).get().other_income,
             "emergency": Goals.query(Goals.week == week).get().emergency,
-            "tuition": Expenses.query(Expenses.week == week).filter(Expenses.category=="tuition").get().amount,
-            "rent": Expenses.query(Expenses.week == week).filter(Expenses.category=="rent").get().amount,
-            "food": Expenses.query(Expenses.week == week).filter(Expenses.category=="food").get().amount,
-            "transportation": Expenses.query(Expenses.week == week).filter(Expenses.category=="transportation").get().amount,
-            "clothing": Expenses.query(Expenses.week == week).filter(Expenses.category=="clothing").get().amount,
-            "misc": Expenses.query(Expenses.week == week).filter(Expenses.category=="misc").get().amount,
+            "tuition": Expenses.query(Expenses.week == week).filter(Expenses.category=="tuition").filter(Expenses.actual == False).get().amount,
+            "rent": Expenses.query(Expenses.week == week).filter(Expenses.category=="rent").filter(Expenses.actual == False).get().amount,
+            "food": Expenses.query(Expenses.week == week).filter(Expenses.category=="food").filter(Expenses.actual == False).get().amount,
+            "transportation": Expenses.query(Expenses.week == week).filter(Expenses.category=="transportation").filter(Expenses.actual == False).get().amount,
+            "clothing": Expenses.query(Expenses.week == week).filter(Expenses.category=="clothing").filter(Expenses.actual == False).get().amount,
+            "misc": Expenses.query(Expenses.week == week).filter(Expenses.category=="misc").filter(Expenses.actual == False).get().amount,
             "a_tuition": total_amounts["tuition"],
             "a_rent": total_amounts["rent"],
             "a_food": total_amounts["food"],
