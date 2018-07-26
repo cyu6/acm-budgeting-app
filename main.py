@@ -4,7 +4,6 @@ import jinja2
 from google.appengine.api import users
 from models import *
 
-
 jinja_current_dir = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
@@ -18,12 +17,13 @@ class LoginHandler(webapp2.RequestHandler):
         logout_url = None
 
         if user:
-
             nickname = user.nickname()
             logout_url = users.create_logout_url('/')
 
         else:
             login_url = users.create_login_url('/home')
+
+
         template_vars = {
             "user" : user,
             "nickname" : nickname,
@@ -48,15 +48,16 @@ class SplitBillHandler(webapp2.RequestHandler):
         template = jinja_current_dir.get_template("/templates/splitbill.html") #fill this in
         self.response.write(template.render())
     def post(self):
+        user = users.get_current_user().email()
         totalbill = float(self.request.get("totalbill"))
         totalpeople = int(self.request.get("totalpeople"))
         nameofevent = self.request.get("nameofevent")
         date = self.request.get("date")
         eachpersonpays = totalbill/totalpeople
         eachportion = round(eachpersonpays, 2)
-        new_splitter = Splitter(totalbill=totalbill,totalpeople=totalpeople, nameofevent=nameofevent, date=date, split = eachportion)
+        new_splitter = Splitter(totalbill=totalbill,totalpeople=totalpeople, nameofevent=nameofevent, date=date, split = eachportion, user = user)
         new_splitter.put()
-        all_splitters = Splitter.query().fetch()
+        all_splitters = Splitter.query(Splitter.user == user).fetch()
         template_vars = {
             "totalbill" : new_splitter.totalbill,
             "totalpeople" : new_splitter.totalpeople,
@@ -73,6 +74,7 @@ class BudgetHandler(webapp2.RequestHandler):
         template = jinja_current_dir.get_template("/templates/budget.html") #fill this in
         self.response.write(template.render())
     def post(self):
+        user = users.get_current_user().email()
         # week of
         week = int(self.request.get("week"))
         # income
@@ -82,24 +84,24 @@ class BudgetHandler(webapp2.RequestHandler):
         emergency = int(self.request.get("emergency"))
         # create expenses
         tuition = int(self.request.get("tuition"))
-        tuition_expense = Expenses(week = week, category = "tuition", amount = tuition, actual = False)
+        tuition_expense = Expenses(week = week, category = "tuition", amount = tuition, actual = False, user = user)
         rent = int(self.request.get("rent"))
-        rent_expense = Expenses(week = week, category = "rent", amount = rent, actual = False)
+        rent_expense = Expenses(week = week, category = "rent", amount = rent, actual = False, user = user)
         food = int(self.request.get("food"))
-        food_expense = Expenses(week = week, category = "food", amount = food, actual = False)
+        food_expense = Expenses(week = week, category = "food", amount = food, actual = False, user = user)
         transportation = int(self.request.get("transportation"))
-        transportation_expense = Expenses(week = week, category = "transportation", amount = transportation, actual = False)
+        transportation_expense = Expenses(week = week, category = "transportation", amount = transportation, actual = False, user = user)
         clothing = int(self.request.get("clothing"))
-        clothing_expense = Expenses(week = week, category = "clothing", amount = clothing, actual = False)
+        clothing_expense = Expenses(week = week, category = "clothing", amount = clothing, actual = False, user = user)
         misc = int(self.request.get("misc"))
-        misc_expense = Expenses(week = week, category = "misc", amount = misc, actual = False)
+        misc_expense = Expenses(week = week, category = "misc", amount = misc, actual = False, user = user)
         goal_expenses = [tuition_expense, rent_expense, food_expense, transportation_expense, clothing_expense, misc_expense]
         goal_expenses_keys = []
         for expense in goal_expenses:
             expense.put()
             goal_expenses_keys.append(expense.key)
         # create goals
-        goals = Goals(week = week, salary = salary, other_income = other_income, emergency = emergency, expenses = goal_expenses_keys)
+        goals = Goals(week = week, salary = salary, other_income = other_income, emergency = emergency, expenses = goal_expenses_keys, user = user)
         goals.put()
 
         starting_value = 0
@@ -128,12 +130,13 @@ class BudgetHandler(webapp2.RequestHandler):
 
 class SaveBudgetHandler(webapp2.RequestHandler):
     def post(self):
+        user = users.get_current_user().email()
         category = str(self.request.get("payments"))
         add_amount = int(self.request.get("amount"))
         week = int(self.request.get("week"))
         starting_value = 0
         # create new expense
-        new_expense = Expenses(week = week, category = category, amount = add_amount, actual = True)
+        new_expense = Expenses(week = week, category = category, amount = add_amount, actual = True, user = user)
         new_expense.put()
         # dictionary for all total amounts
         total_amounts = {
@@ -145,7 +148,7 @@ class SaveBudgetHandler(webapp2.RequestHandler):
             "misc": 0
         }
         # fetch all entries with same category and week
-        same_category_expenses = Expenses.query(Expenses.week == week).filter(Expenses.category == category).filter(Expenses.actual == True).fetch()
+        same_category_expenses = Expenses.query(Expenses.week == week).filter(Expenses.category == category).filter(Expenses.actual == True).filter(Expenses.user == user).fetch()
         # find total actual expense for that category so far this week
         total_amount = add_amount
         sum = 0
@@ -161,7 +164,7 @@ class SaveBudgetHandler(webapp2.RequestHandler):
             if expense_category == category:
                 continue
             else:
-                expenses_by_category = Expenses.query(Expenses.week == week).filter(Expenses.category == expense_category).filter(Expenses.actual == True).fetch()
+                expenses_by_category = Expenses.query(Expenses.week == week).filter(Expenses.category == expense_category).filter(Expenses.actual == True).filter(Expenses.user == user).fetch()
                 for expense in expenses_by_category:
                     sum += expense.amount
                 print sum
@@ -169,20 +172,19 @@ class SaveBudgetHandler(webapp2.RequestHandler):
                     if expense_category == key:
                         total_amounts[key] = sum
                 sum = 0
-        print total_amounts
 
         template_vars = {
             "week": week,
             "starting_actual": starting_value,
-            "salary": Goals.query(Goals.week == week).get().salary,
-            "other_income": Goals.query(Goals.week == week).get().other_income,
-            "emergency": Goals.query(Goals.week == week).get().emergency,
-            "tuition": Expenses.query(Expenses.week == week).filter(Expenses.category=="tuition").filter(Expenses.actual == False).get().amount,
-            "rent": Expenses.query(Expenses.week == week).filter(Expenses.category=="rent").filter(Expenses.actual == False).get().amount,
-            "food": Expenses.query(Expenses.week == week).filter(Expenses.category=="food").filter(Expenses.actual == False).get().amount,
-            "transportation": Expenses.query(Expenses.week == week).filter(Expenses.category=="transportation").filter(Expenses.actual == False).get().amount,
-            "clothing": Expenses.query(Expenses.week == week).filter(Expenses.category=="clothing").filter(Expenses.actual == False).get().amount,
-            "misc": Expenses.query(Expenses.week == week).filter(Expenses.category=="misc").filter(Expenses.actual == False).get().amount,
+            "salary": Goals.query(Goals.week == week).filter(Goals.user == user).get().salary,
+            "other_income": Goals.query(Goals.week == week).filter(Goals.user == user).get().other_income,
+            "emergency": Goals.query(Goals.week == week).filter(Goals.user == user).get().emergency,
+            "tuition": Expenses.query(Expenses.week == week).filter(Expenses.category=="tuition").filter(Expenses.actual == False).filter(Expenses.user == user).get().amount,
+            "rent": Expenses.query(Expenses.week == week).filter(Expenses.category=="rent").filter(Expenses.actual == False).filter(Expenses.user == user).get().amount,
+            "food": Expenses.query(Expenses.week == week).filter(Expenses.category=="food").filter(Expenses.actual == False).filter(Expenses.user == user).get().amount,
+            "transportation": Expenses.query(Expenses.week == week).filter(Expenses.category=="transportation").filter(Expenses.actual == False).filter(Expenses.user == user).get().amount,
+            "clothing": Expenses.query(Expenses.week == week).filter(Expenses.category=="clothing").filter(Expenses.actual == False).filter(Expenses.user == user).get().amount,
+            "misc": Expenses.query(Expenses.week == week).filter(Expenses.category=="misc").filter(Expenses.actual == False).filter(Expenses.user == user).get().amount,
             "a_tuition": total_amounts["tuition"],
             "a_rent": total_amounts["rent"],
             "a_food": total_amounts["food"],

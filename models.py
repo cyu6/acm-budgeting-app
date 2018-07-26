@@ -5,7 +5,8 @@ class Goals(ndb.Model):
     salary = ndb.IntegerProperty();
     other_income = ndb.IntegerProperty();
     emergency = ndb.IntegerProperty();
-    expenses = ndb.KeyProperty(repeated = True)
+    expenses = ndb.KeyProperty(repeated = True);
+    user = ndb.StringProperty();
 
 
 # class Expenses(ndb.Model):
@@ -23,6 +24,7 @@ class Expenses(ndb.Model):
     category = ndb.StringProperty();
     amount = ndb.IntegerProperty();
     actual = ndb.BooleanProperty();
+    user = ndb.StringProperty();
 
 # class ActualExpenses(ndb.Model):
 #     a_tuition = ndb.IntegerProperty();
@@ -40,4 +42,4 @@ class Splitter(ndb.Model):
     totalbill = ndb.FloatProperty();
     totalpeople = ndb.IntegerProperty();
     split = ndb.FloatProperty();
-    username = ndb.StringProperty();
+    user = ndb.StringProperty();
