@@ -37,5 +37,7 @@ class Expenses(ndb.Model):
 class Splitter(ndb.Model):
     nameofevent = ndb.StringProperty();
     date = ndb.StringProperty();
-    totalbill = ndb.IntegerProperty();
+    totalbill = ndb.FloatProperty();
     totalpeople = ndb.IntegerProperty();
+    split = ndb.FloatProperty();
+    username = ndb.StringProperty();
