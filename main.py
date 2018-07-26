@@ -12,25 +12,29 @@ jinja_current_dir = jinja2.Environment(
 class LoginHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        nickname = None
         login_url = None
-        logout_url = None
 
         if user:
-            nickname = user.nickname()
-            logout_url = users.create_logout_url('/')
-
+            self.redirect('/home')
         else:
-            login_url = users.create_login_url('/home')
-
+            login_url = users.create_login_url('/')
 
         template_vars = {
             "user" : user,
-            "nickname" : nickname,
-            "login_url" : login_url,
-            "logout_url" : logout_url,
+            "login_url" : login_url
         }
         template = jinja_current_dir.get_template("/templates/login.html") #fill this in
+        self.response.write(template.render(template_vars))
+
+class LogoutHandler(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        logout_url = users.create_logout_url('/logout')
+
+        template_vars = {
+            "logout_url" : logout_url
+        }
+        template = jinja_current_dir.get_template("/templates/logout.html") #fill this in
         self.response.write(template.render(template_vars))
 
 class HomeHandler(webapp2.RequestHandler):
@@ -203,6 +207,7 @@ class TodoListHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', LoginHandler),
+    ('/logout', LogoutHandler),
     ('/home', HomeHandler), #can't be /static.. because it will look in the static folder
     ('/calendar', CalendarHandler),
     ('/billsplitter', SplitBillHandler ),
