@@ -26,32 +26,34 @@ class LoginHandler(webapp2.RequestHandler):
         template = jinja_current_dir.get_template("/templates/login.html") #fill this in
         self.response.write(template.render(template_vars))
 
-class LogoutHandler(webapp2.RequestHandler):
+class HomeHandler(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        logout_url = users.create_logout_url('/logout')
-
+        logout_url = users.create_logout_url('/')
         template_vars = {
             "logout_url" : logout_url
         }
-        template = jinja_current_dir.get_template("/templates/logout.html") #fill this in
-        self.response.write(template.render(template_vars))
-
-class HomeHandler(webapp2.RequestHandler):
-    def get(self):
         template = jinja_current_dir.get_template("/templates/home.html") #fill this in
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 class CalendarHandler(webapp2.RequestHandler):
     def get(self):
+        logout_url = users.create_logout_url('/')
+        template_vars = {
+            "logout_url" : logout_url
+        }
         template = jinja_current_dir.get_template("/templates/calendar.html") #fill this in
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 class SplitBillHandler(webapp2.RequestHandler):
     def get(self):
+        logout_url = users.create_logout_url('/')
+        template_vars = {
+            "logout_url" : logout_url
+        }
         template = jinja_current_dir.get_template("/templates/splitbill.html") #fill this in
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
     def post(self):
+        logout_url = users.create_logout_url('/')
         user = users.get_current_user().email()
         totalbill = float(self.request.get("totalbill"))
         totalpeople = int(self.request.get("totalpeople"))
@@ -68,16 +70,23 @@ class SplitBillHandler(webapp2.RequestHandler):
             "eachperson" : eachpersonpays,
             "date" : new_splitter.date,
             "nameofevent" : new_splitter.nameofevent,
-            "splitters" : all_splitters
+            "splitters" : all_splitters,
+            "logout_url": logout_url
         }
         template = jinja_current_dir.get_template("/templates/show_splitbill.html") #fill this in
         self.response.write(template.render(template_vars))
 
 class BudgetHandler(webapp2.RequestHandler):
     def get(self):
+        logout_url = users.create_logout_url('/')
+        template_vars = {
+            "logout_url" : logout_url
+        }
         template = jinja_current_dir.get_template("/templates/budget.html") #fill this in
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
     def post(self):
+        logout_url = users.create_logout_url('/')
+
         user = users.get_current_user().email()
         # week of
         week = int(self.request.get("week"))
@@ -128,12 +137,15 @@ class BudgetHandler(webapp2.RequestHandler):
             "a_transportation": starting_value,
             "a_clothing": starting_value,
             "a_misc": starting_value,
+            "logout_url": logout_url
         }
         template = jinja_current_dir.get_template("/templates/show_budget.html")
         self.response.write(template.render(template_vars))
 
 class SaveBudgetHandler(webapp2.RequestHandler):
     def post(self):
+        logout_url = users.create_logout_url('/')
+
         user = users.get_current_user().email()
         category = str(self.request.get("payments"))
         add_amount = int(self.request.get("amount"))
@@ -194,20 +206,24 @@ class SaveBudgetHandler(webapp2.RequestHandler):
             "a_food": total_amounts["food"],
             "a_transportation": total_amounts["transportation"],
             "a_clothing": total_amounts["clothing"],
-            "a_misc": total_amounts["misc"]
+            "a_misc": total_amounts["misc"],
+            "logout_url": logout_url
         }
         template = jinja_current_dir.get_template("/templates/show_budget.html")
         self.response.write(template.render(template_vars))
 
 class TodoListHandler(webapp2.RequestHandler):
     def get(self):
+        logout_url = users.create_logout_url('/')
+        template_vars = {
+            "logout_url" : logout_url
+        }
         template = jinja_current_dir.get_template("/templates/TodoList.html") #fill this in
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 
 app = webapp2.WSGIApplication([
     ('/', LoginHandler),
-    ('/logout', LogoutHandler),
     ('/home', HomeHandler), #can't be /static.. because it will look in the static folder
     ('/calendar', CalendarHandler),
     ('/billsplitter', SplitBillHandler ),
