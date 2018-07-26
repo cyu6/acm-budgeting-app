@@ -147,6 +147,7 @@ class SaveBudgetHandler(webapp2.RequestHandler):
         same_category_expenses = Expenses.query(Expenses.week == week).filter(Expenses.category == category).filter(Expenses.actual == True).fetch()
         # find total actual expense for that category so far this week
         total_amount = 0
+        sum = 0
         for expense in same_category_expenses:
             total_amount += expense.amount
         # add total amount to dictionary by running through list of categories
@@ -154,6 +155,21 @@ class SaveBudgetHandler(webapp2.RequestHandler):
         for expense_category in expense_categories:
             if expense_category == category:
                 total_amounts[category] = total_amount
+        for expense_category in expense_categories:
+            if expense_category == category:
+                continue
+            else:
+                expenses_by_category = Expenses.query(Expenses.week == week).filter(Expenses.category == expense_category).filter(Expenses.actual == True).fetch()
+                for expense in expenses_by_category:
+                    sum += expense.amount
+                print sum
+                for key in total_amounts:
+                    if expense_category == key:
+                        total_amounts[key] = sum
+        print total_amounts
+
+        # recall total amounts to dictionary
+
 
         template_vars = {
             "week": week,
