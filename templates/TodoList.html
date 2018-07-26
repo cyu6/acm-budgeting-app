@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+          <link rel="stylesheet" href="./todomvc-app.css" />
+          <link rel="stylesheet" href="./todo.css" />
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>BudgeEasy</title>
+  <link rel="icon" type="image/png" href="/static/css/favicon.png">
+  <link rel="stylesheet" href="/static/css/styleTodoList.css">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) THIS IS THE BOTTOM BOX */
+    .row.content {height: 700px}
+
+    /* Set gray background color and 100% height THESE ARE THE SIDES */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 120%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #15B7B9 ;
+      color: white;
+      padding: 15px;
+      margin-top: 20px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+    #logo{
+      margin-top: -19.1px;
+      height:50px;
+      width:50px;
+    }
+    #horizontalLine{
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="home"><img id="logo" src = "/static/css/logo_transparent.png"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="home">Home</a></li>
+        <li><a href="calendar">Calendar</a></li>
+        <li><a href="budget">Budget</a></li>
+          <li><a href="billsplitter">Splitter</a></li>
+          <li><a href="todoList">Todo List</a></li>
+
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+        <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> SignOut</a></li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- end of nav bar -->
+<!-- start of todo todolist -->
+<center>
+<div id="/completed" class="completed-filter">
+          <div id="/active" class="active-filter">
+              <section class="todoapp">
+                  <header class="header">
+                      <h1><strong><u>Todo List</strong></u></h1>
+                  </header>
+
+      <div id="todo-0" class="todo">
+          <input type="checkbox" class="created-checkbox" id="created-checkbox-0"  checked />
+
+          <input type="checkbox" class="deleted-checkbox" id="deleted-checkbox-0" />
+          <input type="checkbox" class="done-checkbox" id="done-checkbox-0"  checked />
+          <label for="done-checkbox-0" class="mark-done-checkbox-label"></label>
+          <label for="done-checkbox-0" class="mark-undone-checkbox-label"></label>
+          <input required type="text" value="" class="todo-input" placeholder="todo"/>
+          <label for="created-checkbox-0" class="created-checkbox-label">Add</label>
+          <label for="deleted-checkbox-0" class="deleted-checkbox-label">×</label>
+          <div class="items-left-counter-helper"></div>
+
+      <div id="todo-1" class="todo">
+          <input type="checkbox" class="created-checkbox" id="created-checkbox-1"  checked />
+
+          <input type="checkbox" class="deleted-checkbox" id="deleted-checkbox-1" />
+          <input type="checkbox" class="done-checkbox" id="done-checkbox-1"  checked />
+          <label for="done-checkbox-1" class="mark-done-checkbox-label"></label>
+          <label for="done-checkbox-1" class="mark-undone-checkbox-label"></label>
+          <input required type="text"  CSS" class="todo-input" placeholder=""/>
+          <label for="created-checkbox-1" class="created-checkbox-label">Add</label>
+          <label for="deleted-checkbox-1" class="deleted-checkbox-label">×</label>
+          <div class="items-left-counter-helper"></div>
+
+      <div id="todo-2" class="todo">
+          <input type="checkbox" class="created-checkbox" id="created-checkbox-2"  checked />
+
+          <input type="checkbox" class="deleted-checkbox" id="deleted-checkbox-2" />
+          <input type="checkbox" class="done-checkbox" id="done-checkbox-2"  />
+          <label for="done-checkbox-2" class="mark-done-checkbox-label"></label>
+          <label for="done-checkbox-2" class="mark-undone-checkbox-label"></label>
+          <input required type="text"  class="todo-input" placeholder=""/>
+          <label for="created-checkbox-2" class="created-checkbox-label">Add</label>
+          <label for="deleted-checkbox-2" class="deleted-checkbox-label">×</label>
+          <div class="items-left-counter-helper"></div>
+
+      <div id="todo-3" class="todo">
+          <input type="checkbox" class="created-checkbox" id="created-checkbox-3"  />
+
+          <input type="checkbox" class="deleted-checkbox" id="deleted-checkbox-3" />
+          <input type="checkbox" class="done-checkbox" id="done-checkbox-3"  />
+          <label for="done-checkbox-3" class="mark-done-checkbox-label"></label>
+          <label for="done-checkbox-3" class="mark-undone-checkbox-label"></label>
+          <input required type="text" value="" class="todo-input" placeholder=""/>
+          <label for="created-checkbox-3" class="created-checkbox-label">Add</label>
+          <label for="deleted-checkbox-3" class="deleted-checkbox-label">×</label>
+          <div class="items-left-counter-helper"></div>
+
+      <div id="todo-4" class="todo">
+          <input type="checkbox" class="created-checkbox" id="created-checkbox-4"  />
+
+          <input type="checkbox" class="deleted-checkbox" id="deleted-checkbox-4" />
+          <input type="checkbox" class="done-checkbox" id="done-checkbox-4"  />
+          <label for="done-checkbox-4" class="mark-done-checkbox-label"></label>
+          <label for="done-checkbox-4" class="mark-undone-checkbox-label"></label>
+          <input required type="text" value="" class="todo-input" placeholder=""/>
+          <label for="created-checkbox-4" class="created-checkbox-label">Add</label>
+          <label for="deleted-checkbox-4" class="deleted-checkbox-label">×</label>
+          <div class="items-left-counter-helper"></div>
+
+      <div id="todo-5" class="todo">
+          <input type="checkbox" class="created-checkbox" id="created-checkbox-5"  />
+
+          <input type="checkbox" class="deleted-checkbox" id="deleted-checkbox-5" />
+          <input type="checkbox" class="done-checkbox" id="done-checkbox-5"  />
+          <label for="done-checkbox-5" class="mark-done-checkbox-label"></label>
+          <label for="done-checkbox-5" class="mark-undone-checkbox-label"></label>
+          <input required type="text" value="" class="todo-input" placeholder=""/>
+          <label for="created-checkbox-5" class="created-checkbox-label">Add</label>
+          <label for="deleted-checkbox-5" class="deleted-checkbox-label">×</label>
+          <div class="items-left-counter-helper"></div>
+
+      <div id="todo-6" class="todo">
+          <input type="checkbox" class="created-checkbox" id="created-checkbox-6"  />
+
+          <input type="checkbox" class="deleted-checkbox" id="deleted-checkbox-6" />
+          <input type="checkbox" class="done-checkbox" id="done-checkbox-6"  />
+          <label for="done-checkbox-6" class="mark-done-checkbox-label"></label>
+          <label for="done-checkbox-6" class="mark-undone-checkbox-label"></label>
+          <input required type="text" value="" class="todo-input" placeholder=""/>
+          <label for="created-checkbox-6" class="created-checkbox-label">Add</label>
+          <label for="deleted-checkbox-6" class="deleted-checkbox-label">×</label>
+          <div class="items-left-counter-helper"></div>
+
+      <div id="todo-7" class="todo">
+          <input type="checkbox" class="created-checkbox" id="created-checkbox-7"  />
+
+          <input type="checkbox" class="deleted-checkbox" id="deleted-checkbox-7" />
+          <input type="checkbox" class="done-checkbox" id="done-checkbox-7"  />
+          <label for="done-checkbox-7" class="mark-done-checkbox-label"></label>
+          <label for="done-checkbox-7" class="mark-undone-checkbox-label"></label>
+          <input required type="text" value="" class="todo-input" placeholder=""/>
+          <label for="created-checkbox-7" class="created-checkbox-label">Add</label>
+          <label for="deleted-checkbox-7" class="deleted-checkbox-label">×</label>
+          <div class="items-left-counter-helper"></div>
+
+      <div id="todo-8" class="todo">
+          <input type="checkbox" class="created-checkbox" id="created-checkbox-8"  />
+
+          <input type="checkbox" class="deleted-checkbox" id="deleted-checkbox-8" />
+          <input type="checkbox" class="done-checkbox" id="done-checkbox-8"  />
+          <label for="done-checkbox-8" class="mark-done-checkbox-label"></label>
+          <label for="done-checkbox-8" class="mark-undone-checkbox-label"></label>
+          <input required type="text" value="" class="todo-input" placeholder=""/>
+          <label for="created-checkbox-8" class="created-checkbox-label">Add</label>
+          <label for="deleted-checkbox-8" class="deleted-checkbox-label">×</label>
+          <div class="items-left-counter-helper"></div>
+
+      <div id="todo-9" class="todo">
+          <input type="checkbox" class="created-checkbox" id="created-checkbox-9"  />
+
+          <input type="checkbox" class="deleted-checkbox" id="deleted-checkbox-9" />
+          <input type="checkbox" class="done-checkbox" id="done-checkbox-9"  />
+          <label for="done-checkbox-9" class="mark-done-checkbox-label"></label>
+          <label for="done-checkbox-9" class="mark-undone-checkbox-label"></label>
+          <input required type="text" value="" class="todo-input" placeholder=""/>
+          <label for="created-checkbox-9" class="created-checkbox-label">Add</label>
+          <label for="deleted-checkbox-9" class="deleted-checkbox-label">×</label>
+          <div class="items-left-counter-helper"></div>
+
+      <div id="todo-10" class="todo">
+          <input type="checkbox" class="created-checkbox" id="created-checkbox-10"  />
+
+          <input type="checkbox" class="deleted-checkbox" id="deleted-checkbox-10" />
+          <input type="checkbox" class="done-checkbox" id="done-checkbox-10"  />
+          <label for="done-checkbox-10" class="mark-done-checkbox-label"></label>
+          <label for="done-checkbox-10" class="mark-undone-checkbox-label"></label>
+          <input required type="text" value="" class="todo-input" placeholder=""/>
+          <label for="created-checkbox-10" class="created-checkbox-label">Add</label>
+          <label for="deleted-checkbox-10" class="deleted-checkbox-label">×</label>
+          <div class="items-left-counter-helper"></div>
+  </div>
+    </div>
+      </div>
+       </div>
+         </div>
+           </div>
+            </div>
+              </div>
+                </div>
+                  </div>
+                    </div>
+                        </section>
+                            </div>
+                             </div>
+     </body>
+  </html>
+</center>
