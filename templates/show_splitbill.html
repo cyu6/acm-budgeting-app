@@ -89,10 +89,12 @@
     <br><br>
     <h1 class="otherheader">${{eachperson}}</h1>
 <!-- this image makes everything a button        -->
+ <div>
     <a href="https://www.paypal.com/signin?country.x=US&locale.x=en_US">
     <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal" />
-
+</div>
     <h1 class="thisheader">Previous Transaction with Friends</h1>
+
     {% for splitter in splitters %}
         <p>{{splitter.nameofevent}}</p>
         <br>
@@ -102,6 +104,7 @@
 
 
     {% endfor %}
+
 
   </body>
 </html>
