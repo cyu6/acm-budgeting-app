@@ -83,26 +83,31 @@
       </div>
     </nav>
     <!-- end of nav bar -->
+
   <center>
-   <h1 class="header">Each Person Pays</h1>
+   <h1 class="header">Each Person Pays...</h1>
    </center>
     <br><br>
-    <h1 class="otherheader">${{eachperson}}</h1>
+    <h1 class="otherheader">${{split}}</h1>
 <!-- this image makes everything a button        -->
  <div>
-    <a href="https://www.paypal.com/signin?country.x=US&locale.x=en_US"/>
-    <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal" />
+    <a href="https://www.paypal.com/signin?country.x=US&locale.x=en_US" target="_blank">
+      <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal">
+    </a>
 </div>
     <h1 class="thisheader">Previous Transaction with Friends</h1>
 
     {% for splitter in splitters %}
-        <p>{{splitter.nameofevent}}</p>
+        <p>Event: {{splitter.nameofevent}}</p>
         <br>
-        <p>{{splitter.totalbill}}</p>
+        <p>Total bill: {{splitter.totalbill}}</p>
         <br>
-        <p>{{splitter.date}}</p>
-
-
+        <p>Total people: {{splitter.totalpeople}}</p>
+        <br>
+        <p>Amount per person: {{splitter.split}}</p>
+        <br>
+        <p>Date: {{splitter.date}}</p>
+        <hr>
     {% endfor %}
 
 

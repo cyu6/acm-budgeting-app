@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* * {
   border: 1px solid purple;
 } */
@@ -62,3 +63,67 @@ input {
   border: 0;
   border-bottom: 1px solid #888;
 }
+=======
+body{
+  background-color: black;
+  font-family: sans-serif;
+  color: #fff;
+}
+
+h1{
+  width: fit-content;
+  margin: 0 auto;
+}
+
+ul{
+  list-style-type: none;
+  padding: 20PX 0;
+}
+
+li{
+  padding: 8px 16px;
+  font-size: 14px;
+  width:90%;
+  color: #888;
+  display: flex;
+  background-color: papayawhip;
+  margin-bottom:1px;
+
+}
+
+.spacer{
+  flex-grow: 1;
+}
+.delete{
+  height:fit-content;
+  padding-top: 3px;
+}
+
+.delete:hover{
+  background-color: #8885;
+
+}
+
+.delete:active{
+  background-color: #fff5;
+
+}
+
+.delete > img{
+  height: 12px;
+  width: 12px;
+
+}
+
+form{
+  margin:0;
+  display: flex;
+  width:100%;
+}
+
+input{
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #888;
+}
+>>>>>>> af90f4cac43a341974e2b3d83129037d7620676d

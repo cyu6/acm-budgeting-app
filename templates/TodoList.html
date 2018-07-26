@@ -93,6 +93,7 @@
 </nav>
 <!-- end of nav bar -->
 <!-- start of todo todolist -->
+<<<<<<< HEAD
      <center>
 <!--
         <div id="/completed" class="completed-filter">
@@ -261,3 +262,28 @@
 </html>
 
     </center>
+=======
+     <h1>My Todo List</h1>
+     <ul>
+       {% for item in list_items %}
+       <li>
+         <span>{{item.content}}</span>
+         <span class="spacer"> </span>
+         <span class="delete">
+           <img src="static/images/noun_Delete_1272081.svg">
+         </span>
+         </li>
+         {% endfor %}
+         <li id="last">
+           <form method="posts">
+             <input id="newListItem" type="text" name="list_name"
+                   placeholder="enter a new todo..">
+              <span class="spacer"></span>
+              <button id="addbutton">Add</button>
+            </form>
+          </li>
+     </ul>
+     <script src="static/scripts/todo_list.js"></script>
+   </body>
+   </html>
+>>>>>>> af90f4cac43a341974e2b3d83129037d7620676d

@@ -96,9 +96,9 @@
       <p>Date</p>
       <input type="date" name="date" required>
       <p>What was the total bill?</p>
-      <input type="number" name="totalbill" placeholder="0" required/>
+      <input type="number" step="0.01" min=0 name="totalbill" placeholder="0" required/>
       <p>How many people are there?</p>
-      <input type="number" name="totalpeople" placeholder="0" required/>
+      <input type="number" name="totalpeople" min=1 placeholder="0" required/>
       <br>
       <br>
       <button id="calculatorButton" type="submit">Calculate</button>

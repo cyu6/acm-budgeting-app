@@ -171,9 +171,7 @@
     </tr>
   </table>
   <p style="color:red;">Total left not categorized: {{salary+other_income - (emergency + tuition + rent + food + transportation + clothing + misc)}}</p>
-  <p style="color:red;">Total left to spend this week: {{salary+other_income - (emergency + a_tuition + a_rent + a_food + a_transportation + a_clothing + a_misc)}}</p>
-
-  <!-- <p>
+  <p>
     {% if (salary+other_income - (emergency + tuition + rent + food + transportation + clothing + misc)) < 0 %}
       You're spending more than you're earning!
     {% elif (salary+other_income - (emergency + tuition + rent + food + transportation + clothing + misc)) == 0 %}
@@ -181,7 +179,9 @@
     {% else %}
       You're earning more than you're spending! :D
     {% endif %}
-  </p> -->
+  </p>
+
+  <p style="color:red;">Total left to spend this week: {{salary+other_income - (emergency + a_tuition + a_rent + a_food + a_transportation + a_clothing + a_misc)}}</p>
 
 </body>
 
