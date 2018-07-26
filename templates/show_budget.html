@@ -165,15 +165,23 @@
     </tr>
     <tr>
       <td>Subtotal</td>
-      <td colspan = "3">{{tuition + rent + food + transportation + clothing + misc}}</td>
+      <td>{{tuition + rent + food + transportation + clothing + misc}}</td>
+      <td>{{a_tuition + a_rent + a_food + a_transportation + a_clothing + a_misc}}</td>
+      <td> </td>
     </tr>
   </table>
-  <p style="color:red;">Total left: {{salary+other_income - (emergency + tuition + rent + food + transportation + clothing + misc)}}</p>
-  <p>
+  <p style="color:red;">Total left not categorized: {{salary+other_income - (emergency + tuition + rent + food + transportation + clothing + misc)}}</p>
+  <p style="color:red;">Total left to spend this week: {{salary+other_income - (emergency + a_tuition + a_rent + a_food + a_transportation + a_clothing + a_misc)}}</p>
+
+  <!-- <p>
     {% if (salary+other_income - (emergency + tuition + rent + food + transportation + clothing + misc)) < 0 %}
-      You should resubmit your numbers, you're spending more than you're earning!
+      You're spending more than you're earning!
+    {% elif (salary+other_income - (emergency + tuition + rent + food + transportation + clothing + misc)) == 0 %}
+      You balanced your budget :)
+    {% else %}
+      You're earning more than you're spending! :D
     {% endif %}
-  </p>
+  </p> -->
 
 </body>
 
