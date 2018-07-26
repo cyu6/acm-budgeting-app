@@ -1,11 +1,9 @@
-<html>
-  <head>
-    <link rel="icon" type="image/png" href="/static/css/favicon.png">
-  </head>
-      <body>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
+  <title>BudgeEasy</title>
+  <link rel="icon" type="image/png" href="/static/css/favicon.png">
+  <link rel="stylesheet" href="/static/css/styleTodoList.css">
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,42 +52,35 @@
       color: black;
     }
   </style>
-
 </head>
-
 <body>
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="home"><img id="logo" src = "/static/css/logo_transparent.png"></a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="home">Home</a></li>
-          <li><a href="calendar">Calendar</a></li>
-          <li><a href="budget">Budget</a></li>
-            <li><a href="billsplitter">Splitter</a></li>
-            <li><a href="todolist">Todo List</a></li>
 
-
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> SignOut</a></li>
-        </ul>
-      </div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="home"><img id="logo" src = "/static/css/logo_transparent.png"></a>
     </div>
-  </nav>
-  <!-- END OF NAV BAR -->
-  <br>
-  <br>
-  <center>
-  <iframe src="https://calendar.google.com/calendar/embed?src=cssi.acm.budgeting%40gmail.com&ctz=America%2FNew_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-</center>
-      </body>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="home">Home</a></li>
+        <li><a href="calendar">Calendar</a></li>
+        <li><a href="budget">Budget</a></li>
+          <li><a href="billsplitter">Splitter</a></li>
+          <li><a href="todoList">Todo List</a></li>
 
-</html>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+        <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> SignOut</a></li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>

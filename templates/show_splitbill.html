@@ -69,6 +69,8 @@
             <li><a href="calendar">Calendar</a></li>
             <li><a href="budget">Budget</a></li>
               <li><a href="billsplitter">Splitter</a></li>
+              <li><a href="todolist">Todo List</a></li>
+
 
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -86,17 +88,27 @@
    </center>
     <br><br>
     <h1 class="otherheader">${{eachperson}}</h1>
-    <a href="https://www.paypal.com/signin?country.x=US&locale.x=en_US">
+<!-- this image makes everything a button        -->
+ <div>
+    <a href="https://www.paypal.com/signin?country.x=US&locale.x=en_US"/>
     <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal" />
+<<<<<<< HEAD
  
+=======
+</div>
+>>>>>>> b6007126176b59f86b401b87538c47c3b6c472ae
     <h1 class="thisheader">Previous Transaction with Friends</h1>
+
     {% for splitter in splitters %}
         <p>{{splitter.nameofevent}}</p>
+        <br>
         <p>{{splitter.totalbill}}</p>
+        <br>
         <p>{{splitter.date}}</p>
 
 
     {% endfor %}
+
 
   </body>
 </html>
