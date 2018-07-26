@@ -1,97 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
+  <title>BudgeEasy</title>
+  <link rel="icon" type="image/png" href="/static/css/favicon.png">
+  <link rel="stylesheet" href="/static/css/styleTodoList.css">
 
-li {
-    float: left;
-}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
 
-li a, .dropbtn {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) THIS IS THE BOTTOM BOX */
+    .row.content {height: 700px}
 
-li a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
-}
+    /* Set gray background color and 100% height THESE ARE THE SIDES */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 120%;
+    }
 
-li.dropdown {
-    display: inline-block;
-}
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #15B7B9 ;
+      color: white;
+      padding: 15px;
+      margin-top: 20px;
+    }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-</style>
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+    #logo{
+      margin-top: -19.1px;
+      height:50px;
+      width:50px;
+    }
+    #horizontalLine{
+      color: black;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-  </button>
-  <a class="navbar-brand" href="home"><img id="logo" src = "/static/css/logo_transparent.png"></a>
-</div>
-<div class="collapse navbar-collapse" id="myNavbar">
-  <ul class="nav navbar-nav">
-    <li class="active"><a href="home">Home</a></li>
-    <li><a href="calendar">Calendar</a></li>
-    <li><a href="budget">Budget</a></li>
-      <li><a href="billsplitter">Splitter</a></li>
-      <li><a href="todolist">Todo List</a></li>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="home"><img id="logo" src = "/static/css/logo_transparent.png"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="home">Home</a></li>
+        <li><a href="calendar">Calendar</a></li>
+        <li><a href="budget">Budget</a></li>
+          <li><a href="billsplitter">Splitter</a></li>
+          <li><a href="todoList">Todo List</a></li>
 
 
-  </ul>
-  <ul class="nav navbar-nav navbar-right">
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
 
-    <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> SignOut</a></li>
- -->
- <ul>
-   <li><a href="#home">Home</a></li>
-   <li><a href="#news">News</a></li>
-   <li class="dropdown">
-     <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
-     <div class="dropdown-content">
-       <a href="#">Link 1</a>
-       <a href="#">Link 2</a>
-       <a href="#">Link 3</a>
-     </div>
-   </li>
- </ul>
+        <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> SignOut</a></li>
 
-<h3>Dropdown Menu inside a Navigation Bar</h3>
-<p>Hover over the "Dropdown" link to see the dropdown menu.</p>
 
-</body>
-</html>
+      </ul>
+    </div>
+  </div>
+</nav>

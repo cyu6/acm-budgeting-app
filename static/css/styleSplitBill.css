@@ -1,5 +1,5 @@
 
-
+/* css for style show split bill page */
 .otherheader{
     text-align: center;
 }
@@ -18,4 +18,54 @@ img{
 display: block;
 margin-left: auto;
 margin-right: auto;
+}
+/* end of css for styleshowSplitBill */
+
+/* start of css for styleSplitBill page */
+#input1{
+  width: 50%;
+   padding: 12px 20px;
+   margin: 8px 0;
+   box-sizing: border-box;
+   border: 1px solid #555;
+   outline: none;
+   border-color: black;
+}
+
+#input2{
+  width: 50%;
+   padding: 12px 20px;
+   margin: 8px 0;
+   box-sizing: border-box;
+   border: 1px solid #555;
+   outline: none;
+   border-color: black;
+}
+
+#input3{
+  width: 50%;
+   padding: 12px 20px;
+   margin: 8px 0;
+   box-sizing: border-box;
+   border: 1px solid #555;
+   outline: none;
+   border-color: black;
+}
+
+#input4{
+  width: 50%;
+   padding: 12px 20px;
+   margin: 8px 0;
+   box-sizing: border-box;
+   border: 1px solid #555;
+   outline: none;
+   border-color: black
+}
+
+#calculatorButton{
+  width: 300px;
+    border: 25px solid darkcyan;
+    padding: 25px;
+    margin: 25px;
+    font-size: 35px;
 }
