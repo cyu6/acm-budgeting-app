@@ -89,18 +89,31 @@
 </center>
 
     <br> <br>
+    <center>
     <form method="post">
+<<<<<<< HEAD
       <p>Event Name </p>
-      <input type="text" name="nameofevent" placeholder="Event">
+      <input type="text" name="nameofevent" placeholder="Event" required>
       <p>Date</p>
-      <input type="date" name="date">
+      <input type="date" name="date" required>
       <p>What was the total bill?</p>
-      <input type="number" name="totalbill" placeholder="0"/>
+      <input type="number" name="totalbill" placeholder="0" required/>
       <p>How many people are there?</p>
-      <input type="number" name="totalpeople" placeholder="0"/>
+      <input type="number" name="totalpeople" placeholder="0" required/>
+=======
+      <!-- <p>Event Name </p> -->
+      <input id="input1" type="text" name="nameofevent" placeholder="Event">
+
+      <input id="input2" type="date" name="date">
+     
+      <input id="input3" type="number" name="totalbill" placeholder="Total Bill"/>
+
+      <input id="input4" type="number" name="totalpeople" placeholder="Number of people"/>
+>>>>>>> b6007126176b59f86b401b87538c47c3b6c472ae
       <br>
       <br>
-      <button type="submit">Calculator</button>
+      <button id="calculatorButton" type="submit">Calculate</button>
+    </center>
 
     </form>
   </body>
