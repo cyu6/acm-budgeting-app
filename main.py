@@ -67,7 +67,7 @@ class SplitBillHandler(webapp2.RequestHandler):
         template_vars = {
             "totalbill" : new_splitter.totalbill,
             "totalpeople" : new_splitter.totalpeople,
-            "eachperson" : eachpersonpays,
+            "split" : new_splitter.split,
             "date" : new_splitter.date,
             "nameofevent" : new_splitter.nameofevent,
             "splitters" : all_splitters,
