@@ -75,7 +75,8 @@
           <li class="active"><a href="home">Home</a></li>
           <li><a href="calendar">Calendar</a></li>
           <li><a href="budget">Budget</a></li>
-          <li><a href="billsplitter">Splitter</a></li>
+          <li><a href ="budgethistory">Budget History</a></li>
+          <li><a href="billsplitter">Bill Splitter</a></li>
           <li><a href="todolist">Todo List</a></li>
 
         </ul>
@@ -94,7 +95,7 @@
   </center>
   <form method = "post">
     <div id="week">
-      <p>Week: </p><input type="number" name = "week" placeholder="Week" required/>
+      <p>Week: </p><input type="number" min=0 name = "week" placeholder="Week" required/>
     </div>
   <div class= "parent">
 
@@ -102,11 +103,11 @@
       <h4>Income</h4>
       <p>Salary: </p>
       <div>
-        <input type="number" name="salary" value="0"/>
+        <input type="number" min=0 name="salary" placeholder="0"/>
       </div>
       <p>Other (e.g. allowance): </p>
       <div>
-        <input type="number" name="other_income" value="0"/>
+        <input type="number" min=0 name="other_income" placeholder="0"/>
       </div>
     </div>
 
@@ -114,7 +115,7 @@
       <h4>Emergency Fund</h4>
       <p>Amount to set aside: </p>
       <div>
-        <input type="number" name="emergency" value="0"/>
+        <input type="number" min=0 name="emergency" placeholder="0"/>
       </div>
     </div>
   </div>
@@ -122,27 +123,27 @@
       <h4>Expenses</h4>
       <p>Tuition payment: </p>
       <div>
-        <input type="number" name="tuition" value="0"/>
+        <input type="number" min=0 name="tuition" placeholder="0"/>
       </div>
       <p>Rent: </p>
       <div>
-        <input type="number" name="rent" value="0"/>
+        <input type="number" min=0 name="rent" placeholder="0"/>
       </div>
       <p>Food, including groceries: </p>
       <div>
-        <input type="number" name="food" value="0"/>
+        <input type="number" min=0 name="food" placeholder="0"/>
       </div>
       <p>Transportation: </p>
       <div>
-        <input type="number" name="transportation" value="0"/>
+        <input type="number" min=0 name="transportation" placeholder="0"/>
       </div>
       <p>Clothing: </p>
       <div>
-        <input type="number" name="clothing" value="0"/>
+        <input type="number" min=0 name="clothing" placeholder="0"/>
       </div>
       <p>Miscellaneous: </p>
       <div>
-        <input type="number" name="misc" value="0"/>
+        <input type="number" min=0 name="misc" placeholder="0"/>
         <br>
         <br>
 
@@ -166,8 +167,8 @@
       <option value = "misc">Miscellaneous</option>
     </select>
 
-    <input type="number" name = "amount" value = "0"/>
-    <input type="number" name = "week" placeholder = "Week" required/>
+    <input type="number" min=0 name = "amount" placeholder="0"/>
+    <input type="number" min=0 name = "week" placeholder = "Week" required/>
     <button type="submit">Add to my budget!</button>
 
   </form>

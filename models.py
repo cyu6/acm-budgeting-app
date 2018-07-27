@@ -40,6 +40,10 @@ class Splitter(ndb.Model):
     nameofevent = ndb.StringProperty();
     date = ndb.StringProperty();
     totalbill = ndb.FloatProperty();
+    tax = ndb.FloatProperty();
+    tip = ndb.FloatProperty();
     totalpeople = ndb.IntegerProperty();
     split = ndb.FloatProperty();
+    taxper = ndb.FloatProperty();
+    tipper = ndb.FloatProperty();
     user = ndb.StringProperty();

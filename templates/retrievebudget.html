@@ -1,0 +1,103 @@
+<html>
+
+<head>
+  <title>Budget History</title>
+  <link rel="icon" type="image/png" href="/static/css/favicon.png">
+
+  <!-- <link rel = "stylesheet" href = "/static/css/styleShowBudget.css"/> -->
+</head>
+<!-- start of navbar  -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+<style>
+  /* Remove the navbar's default margin-bottom and rounded borders */
+  .navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+
+  /* Set height of the grid so .sidenav can be 100% (adjust as needed) THIS IS THE BOTTOM BOX */
+  .row.content {height: 700px}
+
+  /* Set gray background color and 100% height THESE ARE THE SIDES */
+  .sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 120%;
+  }
+
+  /* Set black background color, white text and some padding */
+  footer {
+    background-color: #15B7B9 ;
+    color: white;
+    padding: 15px;
+    margin-top: 20px;
+  }
+
+  /* On small screens, set height to 'auto' for sidenav and grid */
+  @media screen and (max-width: 767px) {
+    .sidenav {
+      height: auto;
+      padding: 15px;
+    }
+    .row.content {height:auto;}
+  }
+  #logo{
+    margin-top: -19.1px;
+    height:50px;
+    width:50px;
+  }
+  #horizontalLine{
+    color: black;
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+<div class="container-fluid">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="home"><img id="logo" src = "/static/css/logo_transparent.png"></a>
+  </div>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="home">Home</a></li>
+      <li><a href="calendar">Calendar</a></li>
+      <li><a href="budget">Budget</a></li>
+      <li><a href ="budgethistory">Budget History</a></li>
+      <li><a href="billsplitter">Bill Splitter</a></li>
+      <li><a href="todolist">Todo List</a></li>
+
+
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{{logout_url}}"><span class="glyphicon glyphicon-log-in"></span> SignOut</a></li>
+    </ul>
+  </div>
+</div>
+</nav>
+<!-- end of nav bar  -->
+
+<body>
+  <center>
+    <h1>Retrieve your past and current budgets</h1>
+
+    <p>Which week's budget are you looking for?</p>
+    <form method = "post">
+      <input type="number" name="week" placeholder="Week" required/>
+      <button type="submit">Get my budget!</button>
+    </form>
+  </center>
+</body>
+
+</html>

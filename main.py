@@ -55,21 +55,35 @@ class SplitBillHandler(webapp2.RequestHandler):
     def post(self):
         logout_url = users.create_logout_url('/')
         user = users.get_current_user().email()
-        totalbill = float(self.request.get("totalbill"))
-        totalpeople = int(self.request.get("totalpeople"))
+
         nameofevent = self.request.get("nameofevent")
         date = self.request.get("date")
+        billbeforetax = float(self.request.get("billbeforetax"))
+        tax = float(self.request.get("tax"))
+        tippercent = int(self.request.get("tippercent"))
+        totalpeople = int(self.request.get("totalpeople"))
+
+        tip = (billbeforetax * (tippercent/100.0))
+        totalbill = billbeforetax + tax + tip
+
         eachpersonpays = totalbill/totalpeople
         eachportion = round(eachpersonpays, 2)
-        new_splitter = Splitter(totalbill=totalbill,totalpeople=totalpeople, nameofevent=nameofevent, date=date, split = eachportion, user = user)
+        taxper = round((tax/totalpeople), 2)
+        tipper = round((tip/totalpeople), 2)
+
+        new_splitter = Splitter(nameofevent=nameofevent, date=date, totalbill=totalbill, tax = tax, tip = tip, totalpeople=totalpeople, split = eachportion, taxper = taxper, tipper = tipper, user = user)
         new_splitter.put()
-        all_splitters = Splitter.query(Splitter.user == user).fetch()
+        all_splitters = Splitter.query(Splitter.user == user).order(-Splitter.date).fetch()
         template_vars = {
+            "nameofevent" : new_splitter.nameofevent,
+            "date" : new_splitter.date,
             "totalbill" : new_splitter.totalbill,
+            "tax": new_splitter.tax,
+            "tip": new_splitter.tip,
             "totalpeople" : new_splitter.totalpeople,
             "split" : new_splitter.split,
-            "date" : new_splitter.date,
-            "nameofevent" : new_splitter.nameofevent,
+            "taxper" : new_splitter.taxper,
+            "tipper" : new_splitter.tipper,
             "splitters" : all_splitters,
             "logout_url": logout_url
         }
@@ -170,7 +184,6 @@ class SaveBudgetHandler(webapp2.RequestHandler):
         sum = 0
         for expense in same_category_expenses:
             total_amount += expense.amount
-        print total_amount
         # add total amount to dictionary by running through list of categories
         expense_categories = ["tuition", "rent", "food", "transportation", "clothing", "misc"]
         for expense_category in expense_categories:
@@ -183,7 +196,6 @@ class SaveBudgetHandler(webapp2.RequestHandler):
                 expenses_by_category = Expenses.query(Expenses.week == week).filter(Expenses.category == expense_category).filter(Expenses.actual == True).filter(Expenses.user == user).fetch()
                 for expense in expenses_by_category:
                     sum += expense.amount
-                print sum
                 for key in total_amounts:
                     if expense_category == key:
                         total_amounts[key] = sum
@@ -212,6 +224,69 @@ class SaveBudgetHandler(webapp2.RequestHandler):
         template = jinja_current_dir.get_template("/templates/show_budget.html")
         self.response.write(template.render(template_vars))
 
+class RetrieveBudgetHandler(webapp2.RequestHandler):
+    def get(self):
+        logout_url = users.create_logout_url('/')
+
+        template_vars = {
+            "logout_url" : logout_url
+        }
+
+        template = jinja_current_dir.get_template("/templates/retrievebudget.html") #fill this in
+        self.response.write(template.render(template_vars))
+    def post(self):
+        logout_url = users.create_logout_url('/')
+
+        user = users.get_current_user().email()
+        week = int(self.request.get("week"))
+        starting_value = 0
+
+        # dictionary for all total amounts
+        total_amounts = {
+            "tuition": 0,
+            "rent": 0,
+            "food": 0,
+            "transportation": 0,
+            "clothing": 0,
+            "misc": 0
+        }
+
+        sum = 0
+        # add total amounts to dictionary by running through list of categories
+        expense_categories = ["tuition", "rent", "food", "transportation", "clothing", "misc"]
+        for expense_category in expense_categories:
+            expenses_by_category = Expenses.query(Expenses.week == week).filter(Expenses.category == expense_category).filter(Expenses.actual == True).filter(Expenses.user == user).fetch()
+            for expense in expenses_by_category:
+                sum += expense.amount
+            for key in total_amounts:
+                if expense_category == key:
+                    total_amounts[key] = sum
+            sum = 0
+
+        template_vars = {
+            "week": week,
+            "starting_actual": starting_value,
+            "salary": Goals.query(Goals.week == week).filter(Goals.user == user).get().salary,
+            "other_income": Goals.query(Goals.week == week).filter(Goals.user == user).get().other_income,
+            "emergency": Goals.query(Goals.week == week).filter(Goals.user == user).get().emergency,
+            "tuition": Expenses.query(Expenses.week == week).filter(Expenses.category=="tuition").filter(Expenses.actual == False).filter(Expenses.user == user).get().amount,
+            "rent": Expenses.query(Expenses.week == week).filter(Expenses.category=="rent").filter(Expenses.actual == False).filter(Expenses.user == user).get().amount,
+            "food": Expenses.query(Expenses.week == week).filter(Expenses.category=="food").filter(Expenses.actual == False).filter(Expenses.user == user).get().amount,
+            "transportation": Expenses.query(Expenses.week == week).filter(Expenses.category=="transportation").filter(Expenses.actual == False).filter(Expenses.user == user).get().amount,
+            "clothing": Expenses.query(Expenses.week == week).filter(Expenses.category=="clothing").filter(Expenses.actual == False).filter(Expenses.user == user).get().amount,
+            "misc": Expenses.query(Expenses.week == week).filter(Expenses.category=="misc").filter(Expenses.actual == False).filter(Expenses.user == user).get().amount,
+            "a_tuition": total_amounts["tuition"],
+            "a_rent": total_amounts["rent"],
+            "a_food": total_amounts["food"],
+            "a_transportation": total_amounts["transportation"],
+            "a_clothing": total_amounts["clothing"],
+            "a_misc": total_amounts["misc"],
+            "logout_url": logout_url
+        }
+        template = jinja_current_dir.get_template("/templates/showbudgethistory.html")
+        self.response.write(template.render(template_vars))
+
+
 class TodoListHandler(webapp2.RequestHandler):
     def get(self):
         logout_url = users.create_logout_url('/')
@@ -229,6 +304,7 @@ app = webapp2.WSGIApplication([
     ('/billsplitter', SplitBillHandler ),
     ('/budget', BudgetHandler),
     ('/savebudget', SaveBudgetHandler),
+    ('/budgethistory', RetrieveBudgetHandler),
     ('/todolist', TodoListHandler)
 
 ], debug=True)

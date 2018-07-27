@@ -68,8 +68,9 @@
             <li class="active"><a href="home">Home</a></li>
             <li><a href="calendar">Calendar</a></li>
             <li><a href="budget">Budget</a></li>
-              <li><a href="billsplitter">Splitter</a></li>
-              <li><a href="todolist">Todo List</a></li>
+            <li><a href ="budgethistory">Budget History</a></li>
+            <li><a href="billsplitter">Bill Splitter</a></li>
+            <li><a href="todolist">Todo List</a></li>
 
 
           </ul>
@@ -86,30 +87,39 @@
 
   <center>
    <h1 class="header">Each Person Pays...</h1>
-   </center>
+
     <br><br>
     <h1 class="otherheader">${{split}}</h1>
-<!-- this image makes everything a button        -->
+    <h3>Tax: {{taxpper}}</h3><p>out of {{tax}}</p>
+    <h3>Tip: {{tipper}}</h3><p>out of {{tip}}</p>
+    <br>
+  </center>
  <div>
     <a href="https://www.paypal.com/signin?country.x=US&locale.x=en_US" target="_blank">
       <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal">
     </a>
 </div>
     <h1 class="thisheader">Previous Transaction with Friends</h1>
+    <div id="history">
+      {% for splitter in splitters %}
+          <p>Event: {{splitter.nameofevent}}</p>
+          <p>Date: {{splitter.date}}</p>
+          <br>
+          <p>Total bill: {{splitter.totalbill}}</p>
+          <p>Tax: {{splitter.tax}}</p>
+          <p>Tip: {{splitter.tip}}</p>
+          <br>
+          <p>Total people: {{splitter.totalpeople}}</p>
+          <br>
+          <p>Amount per person: {{splitter.split}}</p>
+          <p>Tax per person: {{splitter.taxper}}</p>
+          <p>Tip per person: {{splitter.tipper}}</p>
+          <hr>
+      {% endfor %}
+    </div>
 
-    {% for splitter in splitters %}
-        <p>Event: {{splitter.nameofevent}}</p>
-        <br>
-        <p>Total bill: {{splitter.totalbill}}</p>
-        <br>
-        <p>Total people: {{splitter.totalpeople}}</p>
-        <br>
-        <p>Amount per person: {{splitter.split}}</p>
-        <br>
-        <p>Date: {{splitter.date}}</p>
-        <hr>
-    {% endfor %}
-
+  <br>
+  <br>
 
   </body>
 </html>
